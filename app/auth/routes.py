@@ -5,6 +5,7 @@ from app.auth import bp
 from app.models import User
 from app import db
 from app.auth.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm, ProfileForm
+from app.email_utils import send_welcome_email, send_password_reset_email, generate_random_password
 from datetime import datetime
 import re
 import requests
@@ -178,7 +179,15 @@ def register():
         db.session.add(user)
         db.session.commit()
         
-        flash('Congratulations, you are now a registered user!', 'success')
+        # Send welcome email
+        try:
+            send_welcome_email(user)
+            flash('Congratulations, you are now a registered user! Check your email for a welcome message.', 'success')
+        except Exception as e:
+            # Log the error but don't fail the registration
+            current_app.logger.error(f"Failed to send welcome email: {str(e)}")
+            flash('Congratulations, you are now a registered user!', 'success')
+        
         return redirect(url_for('auth.login'))
     
     return render_template('auth/register.html', title='Register', form=form)
@@ -192,8 +201,18 @@ def reset_password_request():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            # Send password reset email (implement later)
-            flash('Check your email for the instructions to reset your password', 'info')
+            # Generate new password and send email
+            new_password = generate_random_password()
+            user.set_password(new_password)
+            db.session.commit()
+            
+            # Send password reset email
+            try:
+                send_password_reset_email(user, new_password)
+                flash('A new password has been sent to your email address.', 'success')
+            except Exception as e:
+                current_app.logger.error(f"Failed to send password reset email: {str(e)}")
+                flash('Password reset failed. Please try again or contact support.', 'error')
         else:
             flash('Email address not found.', 'error')
         return redirect(url_for('auth.login'))

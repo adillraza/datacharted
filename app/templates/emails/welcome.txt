@@ -1,0 +1,27 @@
+Welcome to DataCharted!
+
+Transform Your Data, Chart Your Success
+
+Hi {{ user.username }},
+
+We're thrilled to have you on board! 🎉
+
+Your account has been successfully created and you're ready to start your data journey. You're now part of a community of data-driven professionals who are transforming their businesses with actionable insights.
+
+Here's what you can do next:
+
+✓ Connect your marketing platforms (Google Ads, Meta Ads, CallRail)
+✓ Import data from BigQuery, Google Sheets, or CSV files
+✓ Create beautiful, interactive dashboards
+✓ Automate your reporting workflow
+✓ Share insights with your team
+
+Get Started Now: https://app.datacharted.com/auth/login
+
+Need help getting started? Our support team is here to help you every step of the way. Don't hesitate to reach out if you have any questions.
+
+Connect with us:
+📧 support@datacharted.com
+
+© 2024 DataCharted. All rights reserved.
+You're receiving this email because you signed up for DataCharted.
