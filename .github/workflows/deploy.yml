@@ -37,10 +37,6 @@ jobs:
             echo "Email configuration intact"
           fi
           
-          # Install/update dependencies
-          source venv/bin/activate
-          pip install -r requirements.txt
-          
           # Backup database before migration
           echo "📦 Backing up database before migration..."
           if [ -f "app_dev.db" ]; then
@@ -48,24 +44,21 @@ jobs:
             echo "✅ Database backup created"
           fi
           
-          # Run database migrations with proper environment
-          echo "🗄️ Running database migrations..."
-          export FLASK_APP=run.py
-          export FLASK_ENV=production
-          
-          # Check current migration status
-          echo "Current migration: $(flask db current)"
-          
-          # Apply migrations
-          if flask db upgrade; then
-            echo "✅ Database migrations completed successfully"
-          else
+          # Install dependencies and run migrations in virtual environment
+          echo "📦 Installing dependencies and running migrations..."
+          source venv/bin/activate && \
+          pip install -r requirements.txt && \
+          export FLASK_APP=run.py && \
+          export FLASK_ENV=production && \
+          echo "Current migration: $(flask db current)" && \
+          flask db upgrade && \
+          echo "✅ Database migrations completed successfully" && \
+          echo "New migration: $(flask db current)" && \
+          deactivate || {
             echo "❌ Database migration failed - stopping deployment"
+            deactivate 2>/dev/null
             exit 1
-          fi
-          
-          # Verify migration was applied
-          echo "New migration: $(flask db current)"
+          }
           
           # Restart service
           echo "🔄 Restarting service..."
