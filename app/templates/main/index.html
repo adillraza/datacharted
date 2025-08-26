@@ -35,6 +35,18 @@
     </div>
 </section>
 
+<!-- Development Mode Indicator -->
+{% if config.FLASK_ENV == 'development' %}
+<section class="py-2 bg-warning">
+    <div class="container text-center">
+        <small class="text-dark">
+            <i class="fas fa-code me-1"></i>
+            🚧 Development Mode - Local Testing Environment
+        </small>
+    </div>
+</section>
+{% endif %}
+
 <!-- Features Section -->
 <section id="features" class="py-5">
     <div class="container">
