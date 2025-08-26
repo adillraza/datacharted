@@ -2,7 +2,7 @@ Welcome to DataCharted!
 
 Transform Your Data, Chart Your Success
 
-Hi {{ user.username }},
+Hi {{ user.first_name or user.email.split('@')[0] }},
 
 We're thrilled to have you on board! 🎉
 

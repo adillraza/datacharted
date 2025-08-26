@@ -47,7 +47,7 @@ def login():
             flash('Account is deactivated. Please contact support.', 'error')
             return redirect(url_for('auth.login'))
         
-        print(f"   ✅ Login successful for user: {user.username}")
+        print(f"   ✅ Login successful for user: {user.email}")
         login_user(user, remember=form.remember_me.data)
         user.last_login = datetime.utcnow()
         db.session.commit()
@@ -132,7 +132,7 @@ def google_callback():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('main.dashboard')
         
-        flash(f'Welcome back, {user.first_name or user.username}!', 'success')
+        flash(f'Welcome back, {user.first_name or user.email}!', 'success')
         return redirect(next_page)
         
     except Exception as e:
@@ -157,18 +157,13 @@ def register():
     
     form = RegistrationForm()
     if form.validate_on_submit():
-        # Check if username or email already exists
-        if User.query.filter_by(username=form.username.data).first():
-            flash('Username already taken. Please choose another one.', 'error')
-            return redirect(url_for('auth.register'))
-        
+        # Check if email already exists
         if User.query.filter_by(email=form.email.data).first():
             flash('Email already registered. Please use another email or login.', 'error')
             return redirect(url_for('auth.register'))
         
         # Create new user
         user = User(
-            username=form.username.data,
             email=form.email.data,
             first_name=form.first_name.data,
             last_name=form.last_name.data,

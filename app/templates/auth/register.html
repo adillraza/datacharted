@@ -56,17 +56,6 @@
                         </div>
                         
                         <div class="mb-3">
-                            {{ form.username.label(class="form-label") }}
-                            {{ form.username(class="form-control form-control-lg", placeholder="Choose a username") }}
-                            {% if form.username.errors %}
-                                {% for error in form.username.errors %}
-                                    <div class="text-danger small mt-1">{{ error }}</div>
-                                {% endfor %}
-                            {% endif %}
-                            <div class="form-text">Username can only contain letters, numbers, and underscores</div>
-                        </div>
-                        
-                        <div class="mb-3">
                             {{ form.email.label(class="form-label") }}
                             {{ form.email(class="form-control form-control-lg", placeholder="Enter your email") }}
                             {% if form.email.errors %}

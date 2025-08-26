@@ -8,7 +8,6 @@ from config import Config
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, nullable=False, index=True)
     email = db.Column(db.String(120), unique=True, nullable=False, index=True)
     password_hash = db.Column(db.String(128))
     first_name = db.Column(db.String(64))
@@ -84,7 +83,6 @@ class User(UserMixin, db.Model):
             else:
                 # Create new user
                 user = User(
-                    username=google_data['email'].split('@')[0],  # Use email prefix as username
                     email=google_data['email'],
                     first_name=google_data.get('given_name', ''),
                     last_name=google_data.get('family_name', ''),
@@ -102,7 +100,6 @@ class User(UserMixin, db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
             'email': self.email,
             'first_name': self.first_name,
             'last_name': self.last_name,
@@ -122,7 +119,7 @@ class User(UserMixin, db.Model):
         }
     
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f'<User {self.email}>'
 
 @login_manager.user_loader
 def load_user(id):

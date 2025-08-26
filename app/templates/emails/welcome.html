@@ -94,7 +94,7 @@
         </div>
         
         <div class="welcome-message">
-            <h2>Welcome to DataCharted, {{ user.username }}! 🎉</h2>
+            <h2>Welcome to DataCharted, {{ user.first_name or user.email.split('@')[0] }}! 🎉</h2>
             <p>We're thrilled to have you on board. You're now part of a community of data-driven professionals who are transforming their businesses with actionable insights.</p>
         </div>
         

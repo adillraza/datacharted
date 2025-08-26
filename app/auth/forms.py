@@ -11,10 +11,6 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[
-        DataRequired(), 
-        Length(min=3, max=64, message='Username must be between 3 and 64 characters')
-    ])
     email = StringField('Email', validators=[DataRequired(), Email()])
     first_name = StringField('First Name', validators=[
         DataRequired(), 
@@ -36,16 +32,6 @@ class RegistrationForm(FlaskForm):
         EqualTo('password', message='Passwords must match')
     ])
     submit = SubmitField('Register')
-    
-    def validate_username(self, username):
-        # Check for valid characters (alphanumeric and underscore only)
-        if not re.match(r'^[a-zA-Z0-9_]+$', username.data):
-            raise ValidationError('Username can only contain letters, numbers, and underscores.')
-        
-        # Check if username already exists
-        user = User.query.filter_by(username=username.data).first()
-        if user:
-            raise ValidationError('Username already taken. Please choose another one.')
     
     def validate_email(self, email):
         # Check if email already exists
