@@ -180,12 +180,11 @@ def register():
         db.session.commit()
         
         # Send welcome email
-        try:
-            send_welcome_email(user)
+        email_sent = send_welcome_email(user)
+        if email_sent:
             flash('Congratulations, you are now a registered user! Check your email for a welcome message.', 'success')
-        except Exception as e:
-            # Log the error but don't fail the registration
-            current_app.logger.error(f"Failed to send welcome email: {str(e)}")
+        else:
+            current_app.logger.warning(f"Welcome email not sent for user {user.email} - continuing with registration")
             flash('Congratulations, you are now a registered user!', 'success')
         
         return redirect(url_for('auth.login'))
@@ -207,11 +206,11 @@ def reset_password_request():
             db.session.commit()
             
             # Send password reset email
-            try:
-                send_password_reset_email(user, new_password)
+            email_sent = send_password_reset_email(user, new_password)
+            if email_sent:
                 flash('A new password has been sent to your email address.', 'success')
-            except Exception as e:
-                current_app.logger.error(f"Failed to send password reset email: {str(e)}")
+            else:
+                current_app.logger.error(f"Failed to send password reset email to {user.email}")
                 flash('Password reset failed. Please try again or contact support.', 'error')
         else:
             flash('Email address not found.', 'error')

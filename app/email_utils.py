@@ -12,6 +12,11 @@ def generate_random_password(length=12):
 def send_welcome_email(user):
     """Send welcome email to newly registered user"""
     try:
+        # Check if mail is properly configured
+        if not current_app.config.get('MAIL_SERVER') or not current_app.config.get('MAIL_USERNAME'):
+            current_app.logger.warning("Email not configured, skipping welcome email")
+            return False
+            
         msg = Message(
             subject="Welcome to DataCharted! 🎉",
             recipients=[user.email],
@@ -25,6 +30,7 @@ def send_welcome_email(user):
         msg.body = render_template('emails/welcome.txt', user=user)
         
         mail.send(msg)
+        current_app.logger.info(f"Welcome email sent successfully to {user.email}")
         return True
     except Exception as e:
         current_app.logger.error(f"Failed to send welcome email to {user.email}: {str(e)}")
@@ -33,6 +39,11 @@ def send_welcome_email(user):
 def send_password_reset_email(user, new_password):
     """Send password reset email with new password"""
     try:
+        # Check if mail is properly configured
+        if not current_app.config.get('MAIL_SERVER') or not current_app.config.get('MAIL_USERNAME'):
+            current_app.logger.warning("Email not configured, skipping password reset email")
+            return False
+            
         msg = Message(
             subject="Your DataCharted Password Has Been Reset",
             recipients=[user.email],
@@ -46,6 +57,7 @@ def send_password_reset_email(user, new_password):
         msg.body = render_template('emails/password_reset.txt', user=user, new_password=new_password)
         
         mail.send(msg)
+        current_app.logger.info(f"Password reset email sent successfully to {user.email}")
         return True
     except Exception as e:
         current_app.logger.error(f"Failed to send password reset email to {user.email}: {str(e)}")
