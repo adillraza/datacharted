@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Welcome Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h1 class="display-5 fw-bold mb-3">
+                Welcome back, {{ current_user.first_name or current_user.username }}!
+            </h1>
+            <p class="lead text-muted">
+                Here's an overview of your DataCharted setup and connections.
+            </p>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-plug fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Connected Sources</h5>
+                    <h3 class="text-primary">
+                        {% set connected = [current_user.google_ads_connected, current_user.meta_ads_connected, current_user.callrail_connected, current_user.ghl_connected] | select | list | length %}
+                        {{ connected }}/4
+                    </h3>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-database fa-2x text-success"></i>
+                    </div>
+                    <h5 class="card-title">BigQuery Project</h5>
+                    <h3 class="text-success">
+                        {% if current_user.bigquery_project_id %}Active{% else %}Pending{% endif %}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-server fa-2x text-info"></i>
+                    </div>
+                    <h5 class="card-title">VPS Status</h5>
+                    <h3 class="text-info">
+                        {% if current_user.vps_ip %}Active{% else %}Pending{% endif %}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-chart-bar fa-2x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">Reports</h5>
+                    <h3 class="text-warning">Ready</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Sources Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-plug me-2"></i>Data Source Connections
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 border rounded">
+                                <div class="me-3">
+                                    <i class="fab fa-google fa-2x text-danger"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">Google Ads</h6>
+                                    <small class="text-muted">Connect your Google Ads account</small>
+                                </div>
+                                <div>
+                                    {% if current_user.google_ads_connected %}
+                                        <span class="badge bg-success">Connected</span>
+                                    {% else %}
+                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 border rounded">
+                                <div class="me-3">
+                                    <i class="fab fa-facebook fa-2x text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">Meta Ads</h6>
+                                    <small class="text-muted">Connect your Facebook/Instagram Ads</small>
+                                </div>
+                                <div>
+                                    {% if current_user.meta_ads_connected %}
+                                        <span class="badge bg-success">Connected</span>
+                                    {% else %}
+                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 border rounded">
+                                <div class="me-3">
+                                    <i class="fas fa-phone fa-2x text-success"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">CallRail</h6>
+                                    <small class="text-muted">Connect your CallRail account</small>
+                                </div>
+                                <div>
+                                    {% if current_user.callrail_connected %}
+                                        <span class="badge bg-success">Connected</span>
+                                    {% else %}
+                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 border rounded">
+                                <div class="me-3">
+                                    <i class="fas fa-cog fa-2x text-secondary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">GoHighLevel</h6>
+                                    <small class="text-muted">Connect your GHL account</small>
+                                </div>
+                                <div>
+                                    {% if current_user.ghl_connected %}
+                                        <span class="badge bg-success">Connected</span>
+                                    {% else %}
+                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Infrastructure Section -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-database me-2"></i>BigQuery Project
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if current_user.bigquery_project_id %}
+                        <div class="mb-3">
+                            <strong>Project ID:</strong> {{ current_user.bigquery_project_id }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Dataset:</strong> {{ current_user.bigquery_dataset or 'Default' }}
+                        </div>
+                        <span class="badge bg-success">Active</span>
+                    {% else %}
+                        <p class="text-muted">Your BigQuery project will be created automatically when you connect your first data source.</p>
+                        <button class="btn btn-primary">Setup Now</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-server me-2"></i>VPS & Airbyte
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if current_user.vps_ip %}
+                        <div class="mb-3">
+                            <strong>VPS IP:</strong> {{ current_user.vps_ip }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Status:</strong> Running
+                        </div>
+                        <span class="badge bg-success">Active</span>
+                    {% else %}
+                        <p class="text-muted">Your dedicated VPS with Airbyte will be deployed when you're ready to start data collection.</p>
+                        <button class="btn btn-primary">Deploy Now</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="{{ url_for('auth.profile') }}" class="btn btn-outline-primary">
+                            <i class="fas fa-user me-2"></i>Update Profile
+                        </a>
+                        <button class="btn btn-outline-success">
+                            <i class="fas fa-download me-2"></i>Export Data
+                        </a>
+                        <button class="btn btn-outline-info">
+                            <i class="fas fa-cog me-2"></i>Settings
+                        </a>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-question-circle me-2"></i>Get Help
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

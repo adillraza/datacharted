@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+
+{% block title %}Pricing{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 fw-bold mb-3">Simple, Transparent Pricing</h1>
+            <p class="lead text-muted">
+                Choose the plan that fits your business needs. All plans include our core features.
+            </p>
+        </div>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="row g-4 justify-content-center">
+        <!-- Starter Plan -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h5 class="text-primary fw-bold">Starter</h5>
+                        <div class="display-6 fw-bold">$99</div>
+                        <div class="text-muted">per month</div>
+                    </div>
+                    
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Up to 3 data source connections
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Basic BigQuery project setup
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Standard VPS with Airbyte
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            2 Looker Studio report templates
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Email support
+                        </li>
+                    </ul>
+                    
+                    <div class="d-grid">
+                        <a href="{{ url_for('main.get_started') }}" class="btn btn-outline-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Plan -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-primary border-2 shadow-lg position-relative">
+                <div class="position-absolute top-0 start-50 translate-middle">
+                    <span class="badge bg-primary px-3 py-2 rounded-pill">Most Popular</span>
+                </div>
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h5 class="text-primary fw-bold">Professional</h5>
+                        <div class="display-6 fw-bold">$199</div>
+                        <div class="text-muted">per month</div>
+                    </div>
+                    
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Up to 8 data source connections
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Advanced BigQuery project setup
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Premium VPS with Airbyte
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            5 Looker Studio report templates
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Priority support
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Custom data transformations
+                        </li>
+                    </ul>
+                    
+                    <div class="d-grid">
+                        <a href="{{ url_for('main.get_started') }}" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h5 class="text-primary fw-bold">Enterprise</h5>
+                        <div class="display-6 fw-bold">$399</div>
+                        <div class="text-muted">per month</div>
+                    </div>
+                    
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Unlimited data source connections
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Custom BigQuery project setup
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Dedicated VPS with Airbyte
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Unlimited report templates
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            24/7 phone support
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Custom integrations
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Dedicated account manager
+                        </li>
+                    </ul>
+                    
+                    <div class="d-grid">
+                        <a href="{{ url_for('main.get_started') }}" class="btn btn-outline-primary">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Comparison -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">All Plans Include</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-shield-alt text-success me-2"></i>Security & Compliance</h6>
+                            <ul class="text-muted">
+                                <li>Bank-level encryption</li>
+                                <li>GDPR compliance</li>
+                                <li>SOC 2 Type II certified</li>
+                                <li>Regular security audits</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-rocket text-success me-2"></i>Setup & Onboarding</h6>
+                            <ul class="text-muted">
+                                <li>Free setup assistance</li>
+                                <li>Comprehensive documentation</li>
+                                <li>Video tutorials</li>
+                                <li>Best practices guide</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-sync text-success me-2"></i>Data Management</h6>
+                            <ul class="text-muted">
+                                <li>Automated data collection</li>
+                                <li>Data quality monitoring</li>
+                                <li>Backup & recovery</li>
+                                <li>Data retention policies</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-chart-line text-success me-2"></i>Analytics & Reporting</h6>
+                            <ul class="text-muted">
+                                <li>Real-time dashboards</li>
+                                <li>Custom metrics & KPIs</li>
+                                <li>Automated reporting</li>
+                                <li>Export capabilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">Frequently Asked Questions</h4>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Can I change my plan later?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Is there a free trial?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we offer a 14-day free trial for all plans. No credit card required to start.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    What happens to my data if I cancel?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Your data is preserved for 30 days after cancellation. You can export it anytime during this period.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <div class="card bg-primary text-white border-0">
+                <div class="card-body py-5">
+                    <h3 class="mb-3">Ready to Get Started?</h3>
+                    <p class="mb-4">Join hundreds of businesses already using DataCharted to transform their data into insights.</p>
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-rocket me-2"></i>Start Your Free Trial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

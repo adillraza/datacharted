@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    Transform Your Data Into Actionable Insights
+                </h1>
+                <p class="lead mb-4">
+                    Connect your marketing platforms, automate data collection, and build beautiful reports with DataCharted. 
+                    Get started in minutes, not months.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-4">
+                        <i class="fas fa-rocket me-2"></i>Get Started Free
+                    </a>
+                    <a href="#features" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fas fa-play me-2"></i>Watch Demo
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="position-relative">
+                    <div class="bg-white bg-opacity-10 rounded-3 p-4">
+                        <i class="fas fa-chart-line fa-6x text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Everything You Need to Succeed</h2>
+                <p class="lead text-muted">
+                    From data collection to beautiful reports, we've got you covered every step of the way.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-plug fa-2x text-primary"></i>
+                        </div>
+                        <h5 class="card-title">Easy Integrations</h5>
+                        <p class="card-text text-muted">
+                            Connect Google Ads, Meta Ads, CallRail, GoHighLevel, and more with just a few clicks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-database fa-2x text-success"></i>
+                        </div>
+                        <h5 class="card-title">Automated Data Pipeline</h5>
+                        <p class="card-text text-muted">
+                            Set up once and let our platform automatically collect and process your data 24/7.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-chart-bar fa-2x text-warning"></i>
+                        </div>
+                        <h5 class="card-title">Beautiful Reports</h5>
+                        <p class="card-text text-muted">
+                            Create stunning, interactive dashboards with Looker Studio templates designed for your industry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-server fa-2x text-info"></i>
+                        </div>
+                        <h5 class="card-title">Dedicated Infrastructure</h5>
+                        <p class="card-text text-muted">
+                            Get your own BigQuery project and VPS with Airbyte for complete data control and security.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-shield-alt fa-2x text-danger"></i>
+                        </div>
+                        <h5 class="card-title">Enterprise Security</h5>
+                        <p class="card-text text-muted">
+                            Bank-level security with isolated environments, encrypted data, and compliance-ready infrastructure.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-secondary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-headset fa-2x text-secondary"></i>
+                        </div>
+                        <h5 class="card-title">Expert Support</h5>
+                        <p class="card-text text-muted">
+                            Get help when you need it with our dedicated support team and comprehensive documentation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="display-6 fw-bold mb-3">Ready to Get Started?</h2>
+        <p class="lead text-muted mb-4">
+            Join hundreds of businesses already using DataCharted to transform their data into insights.
+        </p>
+        <a href="{{ url_for('main.get_started') }}" class="btn btn-primary btn-lg px-5">
+            <i class="fas fa-rocket me-2"></i>Start Your Free Trial
+        </a>
+        <p class="text-muted mt-3">No credit card required • Setup in minutes</p>
+    </div>
+</section>
+{% endblock %}
