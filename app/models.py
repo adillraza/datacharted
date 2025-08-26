@@ -22,6 +22,11 @@ class User(UserMixin, db.Model):
     last_login = db.Column(db.DateTime)
     deleted_at = db.Column(db.DateTime)
     
+    # Google OAuth fields
+    google_id = db.Column(db.String(128), unique=True, nullable=True)
+    google_picture = db.Column(db.String(512), nullable=True)
+    auth_provider = db.Column(db.String(20), default='local')  # 'local' or 'google'
+    
     # Future fields for data sources
     google_ads_connected = db.Column(db.Boolean, default=False)
     meta_ads_connected = db.Column(db.Boolean, default=False)
@@ -40,7 +45,12 @@ class User(UserMixin, db.Model):
         self.password_hash = generate_password_hash(password)
     
     def check_password(self, password):
+        if not self.password_hash:
+            return False
         return check_password_hash(self.password_hash, password)
+    
+    def is_google_user(self):
+        return self.auth_provider == 'google' and self.google_id is not None
     
     def get_reset_token(self, expires_in=600):
         return jwt.encode(
@@ -56,6 +66,39 @@ class User(UserMixin, db.Model):
             return None
         return User.query.get(id)
     
+    @staticmethod
+    def get_or_create_google_user(google_data):
+        """Get existing user by Google ID or create new one"""
+        user = User.query.filter_by(google_id=google_data['sub']).first()
+        
+        if not user:
+            # Check if email already exists
+            user = User.query.filter_by(email=google_data['email']).first()
+            if user:
+                # Link existing user to Google
+                user.google_id = google_data['sub']
+                user.auth_provider = 'google'
+                user.google_picture = google_data.get('picture')
+                user.is_verified = True
+                db.session.commit()
+            else:
+                # Create new user
+                user = User(
+                    username=google_data['email'].split('@')[0],  # Use email prefix as username
+                    email=google_data['email'],
+                    first_name=google_data.get('given_name', ''),
+                    last_name=google_data.get('family_name', ''),
+                    google_id=google_data['sub'],
+                    google_picture=google_data.get('picture'),
+                    auth_provider='google',
+                    is_verified=True,
+                    is_active=True
+                )
+                db.session.add(user)
+                db.session.commit()
+        
+        return user
+    
     def to_dict(self):
         return {
             'id': self.id,
@@ -66,6 +109,8 @@ class User(UserMixin, db.Model):
             'company_name': self.company_name,
             'is_active': self.is_active,
             'is_verified': self.is_verified,
+            'auth_provider': self.auth_provider,
+            'google_picture': self.google_picture,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'last_login': self.last_login.isoformat() if self.last_login else None,
             'google_ads_connected': self.google_ads_connected,
