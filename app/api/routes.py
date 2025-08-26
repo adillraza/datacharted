@@ -1,78 +1,117 @@
-from flask import jsonify, request
+from flask import jsonify, request, current_app
 from flask_login import login_required, current_user
 from app.api import bp
-from app.models import User
-from app import db
+import subprocess
+import hmac
+import hashlib
+import os
 
 @bp.route('/health')
-def health_check():
-    """Health check endpoint for monitoring"""
+def health():
+    """Health check endpoint"""
     return jsonify({
-        'status': 'healthy',
         'service': 'DataCharted API',
+        'status': 'healthy',
         'version': '1.0.0'
     })
 
 @bp.route('/user/status')
 @login_required
 def user_status():
-    """Get current user's connection status and project info"""
+    """Get current user status"""
     return jsonify({
         'user_id': current_user.id,
         'username': current_user.username,
-        'connections': {
-            'google_ads': current_user.google_ads_connected,
-            'meta_ads': current_user.meta_ads_connected,
-            'callrail': current_user.callrail_connected,
-            'ghl': current_user.ghl_connected
-        },
-        'projects': {
-            'bigquery_project_id': current_user.bigquery_project_id,
-            'bigquery_dataset': current_user.bigquery_dataset,
-            'vps_ip': current_user.vps_ip
-        }
+        'email': current_user.email,
+        'is_active': current_user.is_active,
+        'is_verified': current_user.is_verified
     })
 
+@bp.route('/webhook/deploy', methods=['POST'])
+def deploy_webhook():
+    """GitHub webhook for automatic deployment"""
+    # Verify GitHub webhook signature
+    signature = request.headers.get('X-Hub-Signature-256')
+    if not signature:
+        return jsonify({'error': 'No signature provided'}), 401
+    
+    # Get the webhook secret from environment
+    webhook_secret = os.environ.get('GITHUB_WEBHOOK_SECRET', 'your-webhook-secret')
+    
+    # Calculate expected signature
+    expected_signature = 'sha256=' + hmac.new(
+        webhook_secret.encode('utf-8'),
+        request.data,
+        hashlib.sha256
+    ).hexdigest()
+    
+    if not hmac.compare_digest(signature, expected_signature):
+        return jsonify({'error': 'Invalid signature'}), 401
+    
+    # Check if this is a push to main branch
+    payload = request.get_json()
+    if payload.get('ref') != 'refs/heads/main':
+        return jsonify({'message': 'Not main branch, skipping deployment'}), 200
+    
+    try:
+        # Run deployment script
+        result = subprocess.run(
+            ['/opt/deploy/deploy.sh'],
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minutes timeout
+        )
+        
+        if result.returncode == 0:
+            return jsonify({
+                'message': 'Deployment triggered successfully',
+                'output': result.stdout
+            }), 200
+        else:
+            return jsonify({
+                'error': 'Deployment failed',
+                'output': result.stdout,
+                'error_output': result.stderr
+            }), 500
+            
+    except subprocess.TimeoutExpired:
+        return jsonify({'error': 'Deployment timed out'}), 500
+    except Exception as e:
+        return jsonify({'error': f'Deployment error: {str(e)}'}), 500
+
 # Future endpoints for data source connections
-@bp.route('/connections/google-ads', methods=['POST'])
+@bp.route('/connect/google-ads', methods=['POST'])
 @login_required
 def connect_google_ads():
     """Connect Google Ads account"""
-    # TODO: Implement Google Ads OAuth flow
     return jsonify({'message': 'Google Ads connection endpoint - coming soon'})
 
-@bp.route('/connections/meta-ads', methods=['POST'])
+@bp.route('/connect/meta-ads', methods=['POST'])
 @login_required
 def connect_meta_ads():
     """Connect Meta Ads account"""
-    # TODO: Implement Meta Ads OAuth flow
     return jsonify({'message': 'Meta Ads connection endpoint - coming soon'})
 
-@bp.route('/connections/callrail', methods=['POST'])
+@bp.route('/connect/callrail', methods=['POST'])
 @login_required
 def connect_callrail():
     """Connect CallRail account"""
-    # TODO: Implement CallRail API integration
     return jsonify({'message': 'CallRail connection endpoint - coming soon'})
 
-@bp.route('/connections/ghl', methods=['POST'])
+@bp.route('/connect/ghl', methods=['POST'])
 @login_required
 def connect_ghl():
     """Connect GoHighLevel account"""
-    # TODO: Implement GHL API integration
     return jsonify({'message': 'GoHighLevel connection endpoint - coming soon'})
 
-# Future endpoints for infrastructure management
-@bp.route('/infrastructure/bigquery', methods=['POST'])
+@bp.route('/setup/bigquery', methods=['POST'])
 @login_required
 def setup_bigquery():
-    """Set up BigQuery project and dataset for user"""
-    # TODO: Implement BigQuery project creation
+    """Setup BigQuery project and dataset"""
     return jsonify({'message': 'BigQuery setup endpoint - coming soon'})
 
-@bp.route('/infrastructure/vps', methods=['POST'])
+@bp.route('/setup/vps', methods=['POST'])
 @login_required
 def setup_vps():
-    """Set up DigitalOcean VPS with Airbyte"""
-    # TODO: Implement VPS creation and Airbyte deployment
+    """Setup DigitalOcean VPS"""
     return jsonify({'message': 'VPS setup endpoint - coming soon'})
