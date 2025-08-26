@@ -41,11 +41,43 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
           
-          # Run database migrations
+          # Backup database before migration
+          echo "📦 Backing up database before migration..."
+          if [ -f "app_dev.db" ]; then
+            cp app_dev.db app_dev.db.backup.$(date +%Y%m%d_%H%M%S)
+            echo "✅ Database backup created"
+          fi
+          
+          # Run database migrations with proper environment
+          echo "🗄️ Running database migrations..."
           export FLASK_APP=run.py
-          flask db upgrade
+          export FLASK_ENV=production
+          
+          # Check current migration status
+          echo "Current migration: $(flask db current)"
+          
+          # Apply migrations
+          if flask db upgrade; then
+            echo "✅ Database migrations completed successfully"
+          else
+            echo "❌ Database migration failed - stopping deployment"
+            exit 1
+          fi
+          
+          # Verify migration was applied
+          echo "New migration: $(flask db current)"
           
           # Restart service
+          echo "🔄 Restarting service..."
           systemctl restart datacharted
+          
+          # Verify service started successfully
+          if systemctl is-active --quiet datacharted; then
+            echo "✅ Service restarted successfully"
+          else
+            echo "❌ Service failed to start"
+            systemctl status datacharted --no-pager
+            exit 1
+          fi
           
           echo "Deployment completed successfully with email protection!"

@@ -37,12 +37,41 @@ echo "📦 Installing/updating dependencies..."
 source venv/bin/activate
 pip3 install -r requirements.txt
 
+# Backup database before migration
+echo "📦 Backing up database before migration..."
+if [ -f "app_dev.db" ]; then
+    cp app_dev.db app_dev.db.backup.$(date +%Y%m%d_%H%M%S)
+    echo "✅ Database backup created"
+fi
+
 echo "🗄️  Running database migrations..."
 export FLASK_APP=run.py
-flask db upgrade
+export FLASK_ENV=production
+
+echo "Current migration: $(flask db current)"
+
+if flask db upgrade; then
+    echo "✅ Database migrations completed successfully"
+else
+    echo "❌ Database migration failed - stopping deployment"
+    deactivate
+    exit 1
+fi
+
+echo "New migration: $(flask db current)"
+deactivate
 
 echo "🔄 Restarting service..."
 systemctl restart datacharted
+
+# Verify service started successfully
+if systemctl is-active --quiet datacharted; then
+    echo "✅ Service restarted successfully"
+else
+    echo "❌ Service failed to start"
+    systemctl status datacharted --no-pager
+    exit 1
+fi
 
 echo "✅ Checking service status..."
 systemctl status datacharted --no-pager
