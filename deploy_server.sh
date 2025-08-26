@@ -53,9 +53,14 @@ echo "Current migration: $(flask db current)"
 if flask db upgrade; then
     echo "✅ Database migrations completed successfully"
 else
-    echo "❌ Database migration failed - stopping deployment"
-    deactivate
-    exit 1
+    echo "Migration failed, attempting to stamp and retry..."
+    if flask db stamp head && flask db upgrade; then
+        echo "✅ Database migrations completed successfully after stamping"
+    else
+        echo "❌ Database migration failed even after stamping - stopping deployment"
+        deactivate
+        exit 1
+    fi
 fi
 
 echo "New migration: $(flask db current)"

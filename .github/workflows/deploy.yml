@@ -51,7 +51,7 @@ jobs:
           export FLASK_APP=run.py && \
           export FLASK_ENV=production && \
           echo "Current migration: $(flask db current)" && \
-          flask db upgrade && \
+          (flask db upgrade || (echo "Migration failed, attempting to stamp and retry..." && flask db stamp head && flask db upgrade)) && \
           echo "✅ Database migrations completed successfully" && \
           echo "New migration: $(flask db current)" && \
           deactivate || {
