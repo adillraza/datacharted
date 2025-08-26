@@ -16,9 +16,11 @@ class User(UserMixin, db.Model):
     company_name = db.Column(db.String(128))
     is_active = db.Column(db.Boolean, default=True)
     is_verified = db.Column(db.Boolean, default=False)
+    is_admin = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     last_login = db.Column(db.DateTime)
+    deleted_at = db.Column(db.DateTime)
     
     # Future fields for data sources
     google_ads_connected = db.Column(db.Boolean, default=False)

@@ -14,9 +14,23 @@ def login():
         return redirect(url_for('main.dashboard'))
     
     form = LoginForm()
+    
+    # Debug logging
+    if request.method == 'POST':
+        print(f"🔍 DEBUG: Form data received")
+        print(f"   Username: {request.form.get('username')}")
+        print(f"   Password: {request.form.get('password')}")
+        print(f"   Form valid: {form.validate()}")
+        if not form.validate():
+            print(f"   Form errors: {form.errors}")
+    
     if form.validate_on_submit():
+        print(f"✅ Form validation passed")
         user = User.query.filter_by(email=form.email.data).first()
+        print(f"   User lookup result: {user}")
+        
         if user is None or not user.check_password(form.password.data):
+            print(f"   ❌ Login failed: user={user}, password_valid={user.check_password(form.password.data) if user else False}")
             flash('Invalid email or password', 'error')
             return redirect(url_for('auth.login'))
         
@@ -24,6 +38,7 @@ def login():
             flash('Account is deactivated. Please contact support.', 'error')
             return redirect(url_for('auth.login'))
         
+        print(f"   ✅ Login successful for user: {user.username}")
         login_user(user, remember=form.remember_me.data)
         user.last_login = datetime.utcnow()
         db.session.commit()
