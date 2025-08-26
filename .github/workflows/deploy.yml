@@ -37,6 +37,12 @@ jobs:
             echo "Email configuration intact"
           fi
           
+          # Ensure database uses absolute path
+          if ! grep -q "DATABASE_URL=sqlite:////opt/datacharted-app/app_dev.db" .env; then
+            echo "Updating database URL to absolute path..."
+            sed -i 's|DATABASE_URL=sqlite:///app_dev.db|DATABASE_URL=sqlite:////opt/datacharted-app/app_dev.db|' .env
+          fi
+          
           # Backup database before migration
           echo "📦 Backing up database before migration..."
           if [ -f "app_dev.db" ]; then

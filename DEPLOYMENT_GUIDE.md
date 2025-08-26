@@ -55,7 +55,7 @@ Your server email configuration is preserved during deployments. Here's how it w
 /opt/datacharted-app/
 ├── .env                    # Email credentials (preserved)
 ├── .env.backup.*          # Automatic .env backups
-├── app_dev.db             # Main database file
+├── app_dev.db             # Single database file (absolute path)
 ├── app_dev.db.backup.*    # Automatic database backups
 ├── deploy_server.sh       # Safe deployment script
 └── setup_live_email.py    # Email config restoration
