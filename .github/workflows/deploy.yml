@@ -22,8 +22,30 @@ jobs:
         port: ${{ secrets.VPS_PORT }}
         script: |
           cd /opt/datacharted-app
+          
+          # Backup current .env file
+          cp .env .env.backup.$(date +%Y%m%d_%H%M%S)
+          
+          # Pull latest changes
           git pull origin main
+          
+          # Check and restore email configuration if needed
+          if ! grep -q "MAIL_PASSWORD=zzqh tfur yocr whhk" .env; then
+            echo "Restoring email configuration..."
+            python3 setup_live_email.py
+          else
+            echo "Email configuration intact"
+          fi
+          
+          # Install/update dependencies
           source venv/bin/activate
           pip install -r requirements.txt
+          
+          # Run database migrations
+          export FLASK_APP=run.py
+          flask db upgrade
+          
+          # Restart service
           systemctl restart datacharted
-          echo "Deployment completed successfully!"
+          
+          echo "Deployment completed successfully with email protection!"

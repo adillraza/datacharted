@@ -1,10 +1,20 @@
 #!/bin/bash
 
-# DataCharted Server Deployment Script
+# DataCharted Manual Server Deployment Script
+# Use this ONLY for manual deployments (GitHub Actions handles automatic deployments)
 # This script safely deploys updates while preserving email configuration
 
-echo "🚀 DataCharted Server Deployment"
-echo "================================="
+echo "🚀 DataCharted Manual Server Deployment"
+echo "========================================"
+echo "⚠️  Note: This is for manual deployment only"
+echo "    GitHub Actions automatically deploys when you push to main"
+echo ""
+echo "Continue? (y/N)"
+read -r response
+if [[ ! "$response" =~ ^[Yy]$ ]]; then
+    echo "Deployment cancelled"
+    exit 0
+fi
 
 # Navigate to app directory
 cd /opt/datacharted-app

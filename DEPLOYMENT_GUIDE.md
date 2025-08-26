@@ -11,17 +11,23 @@ Your server email configuration is preserved during deployments. Here's how it w
 
 ### 🔧 **Safe Deployment Process:**
 
-1. **Automatic GitHub Deployments:**
+1. **Automatic GitHub Actions Deployment (Preferred):**
    ```bash
-   # Your normal workflow - just push to GitHub
+   # Your normal workflow - GitHub Actions handles everything automatically!
    git add .
    git commit -m "Your changes"
    git push origin main
+   
+   # That's it! GitHub Actions will:
+   # ✅ Deploy to server automatically
+   # ✅ Preserve email configuration  
+   # ✅ Run database migrations
+   # ✅ Restart the service
    ```
 
-2. **Manual Server Deployment (if needed):**
+2. **Manual Server Deployment (Emergency Only):**
    ```bash
-   # SSH into server and run the deployment script
+   # Only use this if GitHub Actions fails
    ssh root@165.232.38.9
    cd /opt/datacharted-app
    bash deploy_server.sh
