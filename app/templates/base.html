@@ -202,18 +202,174 @@
             border-color: var(--accent-red) !important;
         }
         
-        /* Icon Fallbacks */
-        .fas::before, .fab::before {
-            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif !important;
+        /* Custom Icons - Reliable CSS-only icons */
+        .custom-icon {
+            width: 48px;
+            height: 48px;
+            position: relative;
+            display: inline-block;
         }
         
-        /* Ensure Font Awesome loads properly */
-        .fas, .fab {
-            font-weight: 900;
-            font-style: normal;
-            font-variant: normal;
-            text-rendering: auto;
-            line-height: 1;
+        /* Database Icon */
+        .database-icon {
+            background: var(--primary-color);
+            border-radius: 8px;
+            position: relative;
+        }
+        .database-icon::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+        .database-icon::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 8px;
+            right: 8px;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            box-shadow: 0 8px 0 rgba(255,255,255,0.3), 0 16px 0 rgba(255,255,255,0.3);
+        }
+        
+        /* Filter Icon */
+        .filter-icon {
+            background: var(--secondary-color);
+            clip-path: polygon(0% 0%, 100% 0%, 70% 50%, 30% 50%);
+            border-radius: 4px 4px 0 0;
+        }
+        .filter-icon::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 35%;
+            width: 30%;
+            height: 20px;
+            background: var(--secondary-color);
+        }
+        
+        /* Chart Icon */
+        .chart-icon {
+            background: conic-gradient(var(--accent-yellow) 0deg 120deg, rgba(255,255,255,0.3) 120deg 200deg, var(--accent-yellow) 200deg 360deg);
+            border-radius: 50%;
+            border: 3px solid var(--accent-yellow);
+        }
+        
+        /* Marketing Icon */
+        .marketing-icon {
+            background: var(--primary-color);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+        }
+        .marketing-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Automation Icon */
+        .automation-icon {
+            background: var(--secondary-color);
+            border-radius: 50%;
+            position: relative;
+        }
+        .automation-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255,255,255,0.9);
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 2s linear infinite;
+        }
+        
+        /* Business Intelligence Icon */
+        .business-icon {
+            background: var(--accent-yellow);
+            position: relative;
+        }
+        .business-icon::before {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            width: 8px;
+            height: 20px;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 12px -8px 0 rgba(255,255,255,0.9), 24px -16px 0 rgba(255,255,255,0.9);
+        }
+        
+        /* Technical Icon */
+        .technical-icon {
+            background: var(--accent-red);
+            border-radius: 4px;
+            position: relative;
+        }
+        .technical-icon::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            height: 8px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 2px;
+            box-shadow: 0 12px 0 rgba(255,255,255,0.9), 0 24px 0 rgba(255,255,255,0.9);
+        }
+        
+        /* Analytics Icon */
+        .analytics-icon {
+            background: var(--primary-color);
+            border-radius: 50% 50% 0 50%;
+            position: relative;
+        }
+        .analytics-icon::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50% 50% 0 50%;
+        }
+        
+        /* Integration Icon */
+        .integration-icon {
+            background: var(--secondary-color);
+            border-radius: 4px;
+            position: relative;
+        }
+        .integration-icon::before {
+            content: '⟷';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
         /* Modern Footer Styles */
