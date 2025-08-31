@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(64))
     company_name = db.Column(db.String(128))
     phone_number = db.Column(db.String(20), nullable=True)
+    date_of_birth = db.Column(db.Date, nullable=True)
     is_active = db.Column(db.Boolean, default=True)
     is_verified = db.Column(db.Boolean, default=False)
     is_admin = db.Column(db.Boolean, default=False)

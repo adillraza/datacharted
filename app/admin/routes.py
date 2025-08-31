@@ -76,6 +76,8 @@ def edit_user(user_id):
     first_name = request.form.get('first_name', '').strip()
     last_name = request.form.get('last_name', '').strip()
     email = request.form.get('email', '').strip()
+    company_name = request.form.get('company_name', '').strip()
+    phone_number = request.form.get('phone_number', '').strip()
     password = request.form.get('password', '').strip()
     is_active = 'is_active' in request.form
     is_admin = 'is_admin' in request.form
@@ -105,6 +107,8 @@ def edit_user(user_id):
     user.first_name = first_name
     user.last_name = last_name
     user.email = email
+    user.company_name = company_name if company_name else None
+    user.phone_number = phone_number if phone_number else None
     user.is_active = is_active
     user.is_admin = is_admin
     
@@ -151,6 +155,8 @@ def create_user():
         first_name = request.form.get('first_name', '').strip()
         last_name = request.form.get('last_name', '').strip()
         email = request.form.get('email', '').strip()
+        company_name = request.form.get('company_name', '').strip()
+        phone_number = request.form.get('phone_number', '').strip()
         password = request.form.get('password', '').strip()
         is_admin = 'is_admin' in request.form
         
@@ -182,6 +188,8 @@ def create_user():
             first_name=first_name,
             last_name=last_name,
             email=email,
+            company_name=company_name if company_name else None,
+            phone_number=phone_number if phone_number else None,
             is_admin=is_admin
         )
         user.set_password(password)
