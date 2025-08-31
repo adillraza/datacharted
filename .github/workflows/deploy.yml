@@ -67,8 +67,9 @@ jobs:
           export FLASK_ENV=production && \
           echo "Current migration: $(flask db current)" && \
           
-          # Ensure database tables exist
-          python3 -c "from app import create_app, db; app = create_app(); app.app_context().push(); db.create_all(); print('✅ Database tables ensured')" && \
+          # Check if database tables exist (without recreating)
+          python3 -c "from app import create_app, db; from app.models import User; app = create_app(); app.app_context().push(); User.query.first(); print('✅ Database tables verified')" || \
+          python3 -c "from app import create_app, db; app = create_app(); app.app_context().push(); db.create_all(); print('✅ Database tables created (first time only)')" && \
           
           # Run migrations
           (flask db upgrade || (echo "Migration failed, attempting to stamp and retry..." && flask db stamp head && flask db upgrade)) && \
