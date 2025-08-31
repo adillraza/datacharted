@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} - DataCharted</title>
     
+
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -12,16 +14,15 @@
     <!-- Custom CSS -->
     <style>
         :root {
-            /* DataCharted Brand Colors from Logo */
-            --primary-color: #00B4D8; /* Vibrant Teal - Main Brand Color */
-            --secondary-color: #0077B6; /* Darker Teal - Secondary */
-            --accent-blue: #0096C7; /* Bright Blue from Logo */
-            --accent-yellow: #FFD700; /* Sunny Yellow from Logo */
-            --accent-orange: #FF6B35; /* Warm Red-Orange from Logo */
+            /* DataCharted Official Brand Colors from Logo */
+            --primary-color: #029A9D; /* Primary Teal from Logo */
+            --secondary-color: #0169B2; /* Secondary Blue from Logo */
+            --accent-yellow: #FED714; /* Accent Yellow from Logo */
+            --accent-red: #EA5345; /* Accent Red from Logo */
             --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --dark-color: #0F172A; /* Dark Teal/Green */
+            --warning-color: var(--accent-yellow);
+            --danger-color: var(--accent-red);
+            --dark-color: #0F172A;
             --light-color: #F8FAFC;
             --card-bg: #FFFFFF;
             --text-primary: #1E293B;
@@ -173,16 +174,193 @@
             color: var(--primary-color) !important;
         }
         
-        .bg-accent-blue {
-            background-color: var(--accent-blue) !important;
+        .text-secondary-blue {
+            color: var(--secondary-color) !important;
+        }
+        
+        .text-accent-yellow {
+            color: var(--accent-yellow) !important;
+        }
+        
+        .text-accent-red {
+            color: var(--accent-red) !important;
         }
         
         .bg-accent-yellow {
             background-color: var(--accent-yellow) !important;
         }
         
-        .bg-accent-orange {
-            background-color: var(--accent-orange) !important;
+        .bg-accent-red {
+            background-color: var(--accent-red) !important;
+        }
+        
+        .border-accent-yellow {
+            border-color: var(--accent-yellow) !important;
+        }
+        
+        .border-accent-red {
+            border-color: var(--accent-red) !important;
+        }
+        
+        /* Modern Footer Styles */
+        .modern-footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+            border-top: 3px solid var(--primary-color);
+        }
+        
+        .footer-logo {
+            filter: brightness(1.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .footer-links a {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1 !important;
+            color: var(--primary-color) !important;
+            transform: translateX(5px);
+        }
+        
+        .hover-primary:hover {
+            color: var(--primary-color) !important;
+            opacity: 1 !important;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2, 154, 157, 0.3);
+        }
+        
+        .contact-info i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .modern-footer h6 {
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .modern-footer h6::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        /* Data Pipeline Process Styles */
+        .process-step-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .process-step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary-color);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(2, 154, 157, 0.3);
+        }
+        
+        .process-arrow {
+            position: absolute;
+            top: 50%;
+            right: -25px;
+            transform: translateY(-50%);
+            z-index: 10;
+            font-size: 1.5rem;
+        }
+        
+        .process-flow-container {
+            background: rgba(2, 154, 157, 0.05);
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .process-flow-item {
+            padding: 1rem;
+            margin: 0 1rem;
+        }
+        
+        .process-flow-arrow {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin: 0 0.5rem;
+        }
+        
+        .data-sources i, .visualization-types i {
+            color: var(--primary-color);
+            margin-right: 0.25rem;
+        }
+        
+        .transform-features .badge {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.65rem;
+        }
+        
+        @media (max-width: 768px) {
+            .process-arrow {
+                display: none !important;
+            }
+            
+            .step-number {
+                top: -10px;
+                right: 15px;
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .process-flow-item {
+                margin: 0.5rem;
+                padding: 0.5rem;
+            }
+            
+            .process-flow-arrow {
+                margin: 0 0.25rem;
+                font-size: 1rem;
+            }
         }
     </style>
     {% block extra_css %}{% endblock %}
@@ -191,8 +369,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">
-                <i class="fas fa-chart-line me-2"></i>DataCharted
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.index') }}">
+                <img src="{{ url_for('static', filename='images/datacharted-header-logo.png') }}" alt="DataCharted Logo" height="32" class="me-2">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -263,39 +441,101 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Modern Footer -->
+    <footer class="modern-footer bg-dark text-white py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>DataCharted</h5>
-                    <p class="text-muted">Transform your data into actionable insights with our comprehensive analytics platform.</p>
+            <!-- Main Footer Content -->
+            <div class="row g-4">
+                <!-- Logo & Description Section -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-4">
+                        <img src="{{ url_for('static', filename='images/datacharted-logo.png') }}" 
+                             alt="DataCharted Logo" 
+                             height="100" 
+                             class="mb-3 footer-logo">
+                        <p class="text-light opacity-75 mb-4" style="font-size: 1rem; line-height: 1.6;">
+                            Transform your data into actionable insights with our comprehensive analytics platform. 
+                            Connect, analyze, and visualize your business data like never before.
+                        </p>
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="#" class="text-white me-3 fs-5"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-white me-3 fs-5"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-white me-3 fs-5"><i class="fab fa-github"></i></a>
+                            <a href="#" class="text-white fs-5"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <h6>Product</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-muted text-decoration-none">Features</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Pricing</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">API</a></li>
+                
+                <!-- Product Links -->
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <h6 class="text-white fw-bold mb-3">Product</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Features</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Pricing</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">API</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Integrations</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Documentation</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <h6>Company</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-muted text-decoration-none">About</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Contact</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Support</a></li>
+                
+                <!-- Company Links -->
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <h6 class="text-white fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">About</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Support</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Careers</a></li>
                     </ul>
+                </div>
+                
+                <!-- Resources Links -->
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <h6 class="text-white fw-bold mb-3">Resources</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Help Center</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Tutorials</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Case Studies</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Webinars</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-primary">Community</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <h6 class="text-white fw-bold mb-3">Contact</h6>
+                    <div class="contact-info">
+                        <p class="text-light opacity-75 mb-2">
+                            <i class="fas fa-envelope me-2 text-primary"></i>
+                            hello@datacharted.com
+                        </p>
+                        <p class="text-light opacity-75 mb-2">
+                            <i class="fas fa-phone me-2 text-primary"></i>
+                            +1 (555) 123-4567
+                        </p>
+                        <p class="text-light opacity-75 mb-0">
+                            <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                            San Francisco, CA
+                        </p>
+                    </div>
                 </div>
             </div>
-            <hr class="my-4">
+            
+            <!-- Footer Bottom -->
+            <hr class="my-4 opacity-25">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="mb-0 text-muted">&copy; 2024 DataCharted. All rights reserved.</p>
+                    <p class="mb-0 text-light opacity-75">&copy; 2024 DataCharted. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <a href="https://datacharted.com/privacy_policy.html" class="text-muted text-decoration-none me-3" target="_blank">Privacy Policy</a>
-                    <a href="https://datacharted.com/terms_of_service.html" class="text-muted text-decoration-none" target="_blank">Terms of Service</a>
+                    <a href="https://datacharted.com/privacy_policy.html" 
+                       class="text-light text-decoration-none opacity-75 hover-primary me-4" 
+                       target="_blank">Privacy Policy</a>
+                    <a href="https://datacharted.com/terms_of_service.html" 
+                       class="text-light text-decoration-none opacity-75 hover-primary" 
+                       target="_blank">Terms of Service</a>
                 </div>
             </div>
         </div>
