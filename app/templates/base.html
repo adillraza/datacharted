@@ -202,6 +202,20 @@
             border-color: var(--accent-red) !important;
         }
         
+        /* Icon Fallbacks */
+        .fas::before, .fab::before {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif !important;
+        }
+        
+        /* Ensure Font Awesome loads properly */
+        .fas, .fab {
+            font-weight: 900;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+        }
+        
         /* Modern Footer Styles */
         .modern-footer {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
