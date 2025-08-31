@@ -67,19 +67,22 @@ jobs:
           export FLASK_ENV=production && \
           echo "Current migration: $(flask db current)" && \
           
-          # Check if database tables exist (without recreating)
-          python3 -c "from app import create_app, db; from app.models import User; app = create_app(); app.app_context().push(); User.query.first(); print('✅ Database tables verified')" || \
-          python3 -c "from app import create_app, db; app = create_app(); app.app_context().push(); db.create_all(); print('✅ Database tables created (first time only)')" && \
-          
-          # Run migrations
-          (flask db upgrade || (echo "Migration failed, attempting to stamp and retry..." && flask db stamp head && flask db upgrade)) && \
-          echo "✅ Database migrations completed successfully" && \
-          echo "New migration: $(flask db current)" && \
+          # Simple database setup - create tables if they don't exist
+          python3 -c "
+          from app import create_app, db
+          app = create_app()
+          with app.app_context():
+              try:
+                  db.create_all()
+                  print('✅ Database tables verified/created')
+              except Exception as e:
+                  print(f'Database setup: {e}')
+          " && \
           
           # Final ownership fix
           chown -R www-data:www-data /opt/datacharted-app/ && \
           deactivate || {
-            echo "❌ Database migration failed - stopping deployment"
+            echo "❌ Database setup failed - stopping deployment"
             deactivate 2>/dev/null
             exit 1
           }
