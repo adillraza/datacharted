@@ -23,6 +23,9 @@ class RegistrationForm(FlaskForm):
     company_name = StringField('Company Name', validators=[
         Length(max=128, message='Company name must be less than 128 characters')
     ])
+    phone_number = StringField('Phone Number (Optional)', validators=[
+        Length(max=20, message='Phone number must be less than 20 characters')
+    ])
     password = PasswordField('Password', validators=[
         DataRequired(),
         Length(min=8, message='Password must be at least 8 characters long')
@@ -91,5 +94,8 @@ class ProfileForm(FlaskForm):
     ])
     company_name = StringField('Company Name', validators=[
         Length(max=128, message='Company name must be less than 128 characters')
+    ])
+    phone_number = StringField('Phone Number', validators=[
+        Length(max=20, message='Phone number must be less than 20 characters')
     ])
     submit = SubmitField('Update Profile')

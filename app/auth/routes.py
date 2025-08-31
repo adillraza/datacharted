@@ -167,7 +167,8 @@ def register():
             email=form.email.data,
             first_name=form.first_name.data,
             last_name=form.last_name.data,
-            company_name=form.company_name.data
+            company_name=form.company_name.data,
+            phone_number=form.phone_number.data if form.phone_number.data else None
         )
         user.set_password(form.password.data)
         
@@ -235,6 +236,7 @@ def profile():
         current_user.first_name = form.first_name.data
         current_user.last_name = form.last_name.data
         current_user.company_name = form.company_name.data
+        current_user.phone_number = form.phone_number.data if form.phone_number.data else None
         db.session.commit()
         flash('Your profile has been updated.', 'success')
         return redirect(url_for('auth.profile'))
@@ -242,6 +244,7 @@ def profile():
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.company_name.data = current_user.company_name
+        form.phone_number.data = current_user.phone_number
     return render_template('auth/profile.html', title='Edit Profile', form=form)
 
 # API endpoints for future integration
