@@ -43,23 +43,40 @@ jobs:
             sed -i 's|DATABASE_URL=sqlite:///app_dev.db|DATABASE_URL=sqlite:////opt/datacharted-app/app_dev.db|' .env
           fi
           
-          # Backup database before migration
+          # Backup database before migration (keep only last 3 backups)
           echo "📦 Backing up database before migration..."
           if [ -f "app_dev.db" ]; then
             cp app_dev.db app_dev.db.backup.$(date +%Y%m%d_%H%M%S)
             echo "✅ Database backup created"
+            # Clean up old backups (keep only last 3)
+            ls -t app_dev.db.backup.* 2>/dev/null | tail -n +4 | xargs -r rm -f
+            echo "🧹 Cleaned up old database backups"
           fi
           
-          # Install dependencies and run migrations in virtual environment
+          # Fix database permissions and install dependencies
           echo "📦 Installing dependencies and running migrations..."
+          
+          # Ensure proper ownership of database and app files
+          chown -R www-data:www-data /opt/datacharted-app/
+          chmod 664 app_dev.db 2>/dev/null || true
+          
+          # Install dependencies and run migrations
           source venv/bin/activate && \
           pip install -r requirements.txt && \
           export FLASK_APP=run.py && \
           export FLASK_ENV=production && \
           echo "Current migration: $(flask db current)" && \
+          
+          # Ensure database tables exist
+          python3 -c "from app import create_app, db; app = create_app(); app.app_context().push(); db.create_all(); print('✅ Database tables ensured')" && \
+          
+          # Run migrations
           (flask db upgrade || (echo "Migration failed, attempting to stamp and retry..." && flask db stamp head && flask db upgrade)) && \
           echo "✅ Database migrations completed successfully" && \
           echo "New migration: $(flask db current)" && \
+          
+          # Final ownership fix
+          chown -R www-data:www-data /opt/datacharted-app/ && \
           deactivate || {
             echo "❌ Database migration failed - stopping deployment"
             deactivate 2>/dev/null
@@ -79,7 +96,24 @@ jobs:
             exit 1
           fi
           
+          # Final verification
+          echo "🔍 Verifying deployment..."
+          
+          # Test database connection
+          source venv/bin/activate && python3 -c "from app import create_app; from app.models import User; app = create_app(); app.app_context().push(); users = User.query.count(); print(f'✅ Database working: {users} users found')" && deactivate
+          
+          # Test service health
+          sleep 2
+          if curl -s http://127.0.0.1:8000/ > /dev/null; then
+            echo "✅ Flask app responding correctly"
+          else
+            echo "❌ Flask app not responding - check logs"
+            exit 1
+          fi
+          
           echo "🎉 Deployment completed successfully!"
           echo "📧 Email functionality preserved"
           echo "🔗 Your app is live at: https://datacharted.com"
           echo "🚀 Main domain optimization active"
+          echo "💾 Database: Single app_dev.db with proper permissions"
+          echo "⚙️  Service: Running with 3 gunicorn workers"
