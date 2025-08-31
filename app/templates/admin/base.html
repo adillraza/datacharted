@@ -209,7 +209,7 @@
                     <h4 class="mb-0">{% block page_title %}{% endblock %}</h4>
                 </div>
                 <div class="d-flex align-items-center">
-                    <span class="text-muted me-3">Welcome, {{ current_user.username }}</span>
+                    <span class="text-muted me-3">Welcome, {% if current_user.first_name %}{{ current_user.first_name }}{% else %}{{ current_user.email.split('@')[0] }}{% endif %}</span>
                     <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm">
                         <i class="fas fa-sign-out-alt me-1"></i>Logout
                     </a>

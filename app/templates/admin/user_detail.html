@@ -1,19 +1,19 @@
 {% extends "admin/base.html" %}
 
-{% block title %}{{ user.username }} - User Details{% endblock %}
-{% block page_title %}User Details: {{ user.username }}{% endblock %}
+{% block title %}{% if user.first_name or user.last_name %}{{ user.first_name or '' }} {{ user.last_name or '' }}{% else %}{{ user.email.split('@')[0] }}{% endif %} - User Details{% endblock %}
+{% block page_title %}User Details: {% if user.first_name or user.last_name %}{{ user.first_name or '' }} {{ user.last_name or '' }}{% else %}{{ user.email.split('@')[0] }}{% endif %}{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
     <!-- Page Header -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">User: {{ user.username }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">User: {% if user.first_name or user.last_name %}{{ user.first_name or '' }} {{ user.last_name or '' }}{% else %}{{ user.email.split('@')[0] }}{% endif %}</h1>
         <div>
             <a href="{{ url_for('admin.users') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left me-2"></i>Back to Users
             </a>
             {% if user.id != current_user.id %}
-            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ user.id }}, '{{ user.username }}')">
+            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ user.id }}, '{% if user.first_name or user.last_name %}{{ user.first_name or '' }} {{ user.last_name or '' }}{% else %}{{ user.email.split('@')[0] }}{% endif %}')">
                 <i class="fas fa-trash me-2"></i>Deactivate User
             </button>
             {% endif %}
@@ -31,28 +31,21 @@
                     <form method="POST" action="{{ url_for('admin.edit_user', user_id=user.id) }}">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="username" class="form-label">Username *</label>
-                                <input type="text" class="form-control" id="username" name="username" 
-                                       value="{{ user.username }}" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">Email *</label>
-                                <input type="email" class="form-control" id="email" name="email" 
-                                       value="{{ user.email }}" required>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="first_name" class="form-label">First Name</label>
+                                <label for="first_name" class="form-label">First Name *</label>
                                 <input type="text" class="form-control" id="first_name" name="first_name" 
-                                       value="{{ user.first_name or '' }}">
+                                       value="{{ user.first_name or '' }}" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="last_name" class="form-label">Last Name</label>
                                 <input type="text" class="form-control" id="last_name" name="last_name" 
                                        value="{{ user.last_name or '' }}">
                             </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   value="{{ user.email }}" required>
                         </div>
                         
                         <div class="mb-3">
@@ -221,8 +214,8 @@
 
 {% block extra_js %}
 <script>
-function confirmDelete(userId, username) {
-    document.getElementById('deleteUserName').textContent = username;
+function confirmDelete(userId, userName) {
+    document.getElementById('deleteUserName').textContent = userName;
     document.getElementById('deleteForm').action = "{{ url_for('admin.delete_user', user_id=user.id) }}";
     
     const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));

@@ -8,7 +8,7 @@
     <div class="row mb-5">
         <div class="col-12">
             <h1 class="display-5 fw-bold mb-3">
-                Welcome back, {{ current_user.first_name or current_user.username }}!
+                Welcome back, {% if current_user.first_name %}{{ current_user.first_name }}{% else %}{{ current_user.email.split('@')[0] }}{% endif %}!
             </h1>
             <p class="lead text-muted">
                 Here's an overview of your DataCharted setup and connections.

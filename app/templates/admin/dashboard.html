@@ -105,7 +105,7 @@
                         <table class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Username</th>
+                                    <th>Name</th>
                                     <th>Email</th>
                                     <th>Status</th>
                                     <th>Role</th>
@@ -118,7 +118,11 @@
                                 <tr>
                                     <td>
                                         <a href="{{ url_for('admin.user_detail', user_id=user.id) }}" class="text-primary">
-                                            {{ user.username }}
+                                            {% if user.first_name or user.last_name %}
+                                                {{ user.first_name or '' }} {{ user.last_name or '' }}
+                                            {% else %}
+                                                {{ user.email.split('@')[0] }}
+                                            {% endif %}
                                         </a>
                                     </td>
                                     <td>{{ user.email }}</td>

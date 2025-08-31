@@ -21,7 +21,8 @@ def user_status():
     """Get current user status"""
     return jsonify({
         'user_id': current_user.id,
-        'username': current_user.username,
+        'first_name': current_user.first_name,
+        'last_name': current_user.last_name,
         'email': current_user.email,
         'is_active': current_user.is_active,
         'is_verified': current_user.is_verified

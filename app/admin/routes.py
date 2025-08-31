@@ -45,7 +45,8 @@ def users():
     search = request.args.get('search', '')
     if search:
         users = User.query.filter(
-            (User.username.ilike(f'%{search}%')) |
+            (User.first_name.ilike(f'%{search}%')) |
+            (User.last_name.ilike(f'%{search}%')) |
             (User.email.ilike(f'%{search}%'))
         ).order_by(User.created_at.desc()).paginate(
             page=page, per_page=per_page, error_out=False
@@ -72,7 +73,8 @@ def edit_user(user_id):
     """Edit user information"""
     user = User.query.get_or_404(user_id)
     
-    username = request.form.get('username', '').strip()
+    first_name = request.form.get('first_name', '').strip()
+    last_name = request.form.get('last_name', '').strip()
     email = request.form.get('email', '').strip()
     password = request.form.get('password', '').strip()
     is_active = 'is_active' in request.form
@@ -81,12 +83,8 @@ def edit_user(user_id):
     # Validation
     errors = []
     
-    if not username:
-        errors.append('Username is required')
-    elif len(username) < 3:
-        errors.append('Username must be at least 3 characters')
-    elif User.query.filter(User.username == username, User.id != user.id).first():
-        errors.append('Username already exists')
+    if not first_name and not last_name:
+        errors.append('At least first name or last name is required')
     
     if not email:
         errors.append('Email is required')
@@ -104,7 +102,8 @@ def edit_user(user_id):
         return redirect(url_for('admin.user_detail', user_id=user.id))
     
     # Update user
-    user.username = username
+    user.first_name = first_name
+    user.last_name = last_name
     user.email = email
     user.is_active = is_active
     user.is_admin = is_admin
@@ -149,7 +148,8 @@ def delete_user(user_id):
 def create_user():
     """Create new user"""
     if request.method == 'POST':
-        username = request.form.get('username', '').strip()
+        first_name = request.form.get('first_name', '').strip()
+        last_name = request.form.get('last_name', '').strip()
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '').strip()
         is_admin = 'is_admin' in request.form
@@ -157,12 +157,8 @@ def create_user():
         # Validation
         errors = []
         
-        if not username:
-            errors.append('Username is required')
-        elif len(username) < 3:
-            errors.append('Username must be at least 3 characters')
-        elif User.query.filter_by(username=username).first():
-            errors.append('Username already exists')
+        if not first_name and not last_name:
+            errors.append('At least first name or last name is required')
         
         if not email:
             errors.append('Email is required')
@@ -183,7 +179,8 @@ def create_user():
         
         # Create user
         user = User(
-            username=username,
+            first_name=first_name,
+            last_name=last_name,
             email=email,
             is_admin=is_admin
         )
@@ -208,7 +205,9 @@ def api_users():
     users = User.query.all()
     return jsonify([{
         'id': user.id,
-        'username': user.username,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'full_name': f"{user.first_name or ''} {user.last_name or ''}".strip() or 'No Name',
         'email': user.email,
         'is_active': user.is_active,
         'is_admin': user.is_admin,

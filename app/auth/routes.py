@@ -27,7 +27,7 @@ def login():
     # Debug logging
     if request.method == 'POST':
         print(f"🔍 DEBUG: Form data received")
-        print(f"   Username: {request.form.get('username')}")
+        print(f"   Email: {request.form.get('email')}")
         print(f"   Password: {request.form.get('password')}")
         print(f"   Form valid: {form.validate()}")
         if not form.validate():

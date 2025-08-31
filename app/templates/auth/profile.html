@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <h6>Account Information</h6>
                             <p class="text-muted mb-1">
-                                <strong>Username:</strong> {{ current_user.username }}
+                                <strong>Name:</strong> {% if current_user.first_name or current_user.last_name %}{{ current_user.first_name or '' }} {{ current_user.last_name or '' }}{% else %}{{ current_user.email.split('@')[0] }}{% endif %}
                             </p>
                             <p class="text-muted mb-1">
                                 <strong>Email:</strong> {{ current_user.email }}
