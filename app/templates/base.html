@@ -558,12 +558,10 @@
                     <p class="mb-0 text-light opacity-75">&copy; 2024 DataCharted. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <a href="https://datacharted.com/privacy_policy.html" 
-                       class="text-light text-decoration-none opacity-75 hover-primary me-4" 
-                       target="_blank">Privacy Policy</a>
-                    <a href="https://datacharted.com/terms_of_service.html" 
-                       class="text-light text-decoration-none opacity-75 hover-primary" 
-                       target="_blank">Terms of Service</a>
+                    <a href="{{ url_for('main.privacy_policy') }}" 
+                       class="text-light text-decoration-none opacity-75 hover-primary me-4">Privacy Policy</a>
+                    <a href="{{ url_for('main.terms_of_service') }}" 
+                       class="text-light text-decoration-none opacity-75 hover-primary">Terms of Service</a>
                 </div>
             </div>
         </div>
