@@ -1,0 +1,340 @@
+{% extends "base.html" %}
+
+{% block title %}Data Modeling & Transformation{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-cubes fa-2x text-white"></i>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-0">Data Modeling & Transformation</h1>
+                </div>
+                <p class="lead mb-4">
+                    Turning Raw Data Into Reliable, Actionable Insights. Clean, enrich, and structure your data so it becomes a trustworthy foundation for reporting, analytics, and forecasting.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-4">Get Started</a>
+                    <a href="#why-modeling" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bg-white bg-opacity-10 rounded-3 p-4">
+                    <i class="fas fa-sitemap fa-5x text-white mb-3"></i>
+                    <h5 class="text-white">Data Architecture</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Data Modeling Matters -->
+<section id="why-modeling" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Data Modeling Matters</h2>
+                <p class="lead text-secondary">
+                    Think of your data model as the blueprint of your business information. Raw data is rarely ready to use.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6">
+                <div class="card border-danger h-100">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0"><i class="fas fa-times me-2"></i>Without Proper Data Modeling</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-exclamation-triangle text-danger me-2"></i>Numbers don't reconcile across teams</li>
+                            <li class="mb-2"><i class="fas fa-exclamation-triangle text-danger me-2"></i>Dashboards become slow or inconsistent</li>
+                            <li class="mb-2"><i class="fas fa-exclamation-triangle text-danger me-2"></i>Business questions take days to answer instead of seconds</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card border-success h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-check me-2"></i>With Robust Data Modeling</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Trust that KPIs are accurate and consistent</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Answer complex questions with ease</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Scale reporting as your data and business grow</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Offer -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">What We Offer</h2>
+                <p class="lead text-secondary">
+                    Comprehensive data modeling and transformation services to create reliable, scalable data foundations
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-broom fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Data Cleansing & Standardization</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We remove duplicates, correct inconsistencies, and standardize formats to ensure every field (like dates, currencies, or IDs) aligns across sources.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-business-time fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Business Logic & KPI Definitions</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We codify your business rules (e.g., how to define "active user," "churned customer," or "verified lead") into the data model, ensuring every report tells the same story.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-stream fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Data Transformation Pipelines</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            Using tools like BigQuery SQL, Dataform, or dbt, we create transformation workflows that reshape raw data into analysis-ready tables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-expand-arrows-alt fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Scalable Architecture</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We design models that grow with your data volume and business complexity — no bottlenecks, no rework every quarter.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow-sm bg-primary text-white">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-link fa-2x me-3"></i>
+                            <h4 class="fw-bold mb-0">Enrichment & Joins</h4>
+                        </div>
+                        <p class="mb-0">
+                            We connect multiple data sources (marketing, sales, finance, operations) into a single, unified model. This creates cross-functional insights that siloed systems can't provide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Stack -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Our Technology Stack</h2>
+                <p class="lead text-secondary">
+                    We use industry-leading tools and platforms for data modeling and transformation
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fab fa-google fa-3x text-danger mb-2"></i>
+                        <h5 class="fw-bold">BigQuery</h5>
+                        <p class="text-secondary small">Google's serverless data warehouse</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fas fa-code fa-3x text-primary mb-2"></i>
+                        <h5 class="fw-bold">Dataform</h5>
+                        <p class="text-secondary small">SQL-based data transformation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fas fa-database fa-3x text-success mb-2"></i>
+                        <h5 class="fw-bold">dbt</h5>
+                        <p class="text-secondary small">Data build tool for analytics engineering</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fas fa-snowflake fa-3x text-info mb-2"></i>
+                        <h5 class="fw-bold">Snowflake & Redshift</h5>
+                        <p class="text-secondary small">Enterprise data warehouses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who Benefits -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Who Benefits From Data Modeling & Transformation?</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-users fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Agencies</h5>
+                        <p class="text-secondary">Who need consistent metrics across dozens of clients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-shopping-cart fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">E-commerce Companies</h5>
+                        <p class="text-secondary">Connecting sales, inventory, and logistics</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-sync fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Subscription Businesses</h5>
+                        <p class="text-secondary">Tracking customer lifecycles, upgrades, and churn</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-user-tie fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Executives</h5>
+                        <p class="text-secondary">Seeking confidence in KPIs before making strategic decisions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Datacharted -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Choose Datacharted?</h2>
+                <p class="lead text-secondary">
+                    We don't just build tables — we design data foundations. With 18+ years of experience, we know how to balance technical efficiency with business usability.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-tools fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Technical Expertise</h5>
+                    <p class="text-secondary">
+                        Expertise in Google BigQuery, Dataform, dbt, Redshift, and Snowflake
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-business-time fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Business Logic</h5>
+                    <p class="text-secondary">
+                        Ability to codify business-specific logic into repeatable workflows
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-chart-line fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Scalable Models</h5>
+                    <p class="text-secondary">
+                        Proven record of delivering models that scale with client growth
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ready to Build a Strong Data Foundation?</h2>
+                <p class="lead mb-4">
+                    If your dashboards feel unreliable or inconsistent, the problem likely lies in your data model. Let us help you build a foundation you can trust.
+                </p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-5">Book Consultation</a>
+                    <a href="{{ url_for('main.about') }}" class="btn btn-outline-light btn-lg px-5">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

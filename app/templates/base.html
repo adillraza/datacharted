@@ -384,6 +384,32 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('main.data_strategy_consulting') }}">
+                                <i class="fas fa-chess me-2 text-secondary-blue"></i>Data Strategy & Consulting
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.data_integration_automation') }}">
+                                <i class="fas fa-link me-2 text-secondary-blue"></i>Data Integration & Automation
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.data_modeling_transformation') }}">
+                                <i class="fas fa-cubes me-2 text-secondary-blue"></i>Data Modeling & Transformation
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.dashboard_design_visualization') }}">
+                                <i class="fas fa-chart-pie me-2 text-secondary-blue"></i>Dashboard Design & Visualization
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.advanced_analytics_forecasting') }}">
+                                <i class="fas fa-crystal-ball me-2 text-secondary-blue"></i>Advanced Analytics & Forecasting
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.custom_api_connectors') }}">
+                                <i class="fas fa-plug me-2 text-secondary-blue"></i>Custom API Connectors
+                            </a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.pricing') }}">Pricing</a>
                     </li>

@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+
+{% block title %}Advanced Analytics & Forecasting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-crystal-ball fa-2x text-white"></i>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-0">Advanced Analytics & Forecasting</h1>
+                </div>
+                <p class="lead mb-4">
+                    Looking Beyond the Present to Predict What's Next. Move from reactive decision-making to proactive planning with predictive modeling and advanced analytics techniques.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-4">Get Started</a>
+                    <a href="#why-analytics" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bg-white bg-opacity-10 rounded-3 p-4">
+                    <i class="fas fa-brain fa-5x text-white mb-3"></i>
+                    <h5 class="text-white">Predictive Intelligence</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Advanced Analytics Matters -->
+<section id="why-analytics" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Advanced Analytics Matters</h2>
+                <p class="lead text-secondary">
+                    Most dashboards show what happened yesterday. Advanced analytics helps you answer questions about tomorrow.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-question-circle text-secondary-blue me-2"></i>
+                            Key Business Questions We Help Answer
+                        </h5>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-arrow-right text-secondary-blue me-2"></i>Which campaigns will generate the most leads next quarter?</li>
+                            <li class="mb-2"><i class="fas fa-arrow-right text-secondary-blue me-2"></i>Which customers are most likely to churn?</li>
+                            <li class="mb-2"><i class="fas fa-arrow-right text-secondary-blue me-2"></i>How should inventory be allocated to meet future demand?</li>
+                            <li class="mb-2"><i class="fas fa-arrow-right text-secondary-blue me-2"></i>What's the expected return if marketing spend increases by 20%?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm bg-light">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-lightbulb text-secondary-blue me-2"></i>
+                            The Power of Predictive Analytics
+                        </h5>
+                        <p class="text-secondary">
+                            By applying predictive modeling, machine learning, and statistical analysis, we empower businesses to make smarter, forward-looking decisions that drive competitive advantage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Offer -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">What We Offer</h2>
+                <p class="lead text-secondary">
+                    Comprehensive advanced analytics and forecasting services to unlock your data's predictive power
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-chart-line fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Predictive Modeling</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            Using historical data, we build models that forecast outcomes such as sales growth, customer churn, or lead conversion probability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-chart-area fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Forecasting & Trend Analysis</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We apply time-series forecasting and statistical models to project future performance — from revenue and demand to marketing ROI.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-users-cog fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Segmentation & Behavioral Analytics</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We uncover hidden customer patterns, segment audiences, and identify high-value cohorts for targeted marketing and retention strategies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-sliders-h fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Performance Optimization</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            By analyzing past results, we determine which levers drive the biggest impact, helping you allocate budgets and resources more effectively.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow-sm bg-primary text-white">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-project-diagram fa-2x me-3"></i>
+                            <h4 class="fw-bold mb-0">Scenario Planning</h4>
+                        </div>
+                        <p class="mb-0">
+                            We build "what-if" models that let you simulate different business scenarios and assess the potential outcomes before making big decisions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Stack -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Advanced Analytics Technology</h2>
+                <p class="lead text-secondary">
+                    We combine business intelligence expertise with machine learning techniques to deliver insights that are both technically robust and business-ready
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fab fa-google fa-3x text-danger mb-2"></i>
+                        <h5 class="fw-bold">BigQuery ML</h5>
+                        <p class="text-secondary small">Machine learning in your data warehouse</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fab fa-python fa-3x text-primary mb-2"></i>
+                        <h5 class="fw-bold">Python</h5>
+                        <p class="text-secondary small">Advanced statistical modeling and ML</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fas fa-chart-bar fa-3x text-info mb-2"></i>
+                        <h5 class="fw-bold">R</h5>
+                        <p class="text-secondary small">Statistical analysis and forecasting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-3 p-4 mb-3">
+                        <i class="fas fa-brain fa-3x text-success mb-2"></i>
+                        <h5 class="fw-bold">ML Frameworks</h5>
+                        <p class="text-secondary small">TensorFlow, scikit-learn, and more</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who Benefits -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Who Benefits From Advanced Analytics & Forecasting?</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-bullhorn fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Marketing Teams</h5>
+                        <p class="text-secondary">Optimizing ad spend and predicting lead quality</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-shopping-cart fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">E-commerce Businesses</h5>
+                        <p class="text-secondary">Managing seasonal demand and inventory planning</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-users fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Agencies</h5>
+                        <p class="text-secondary">Demonstrating ROI and proactive strategy to clients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-user-tie fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Executives</h5>
+                        <p class="text-secondary">Making investment, expansion, or resourcing decisions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Industry Applications -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Industry Applications</h2>
+                <p class="lead text-secondary">
+                    Experience building predictive models across industries
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-bullhorn fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Marketing</h5>
+                    <p class="text-secondary">Campaign optimization, lead scoring, attribution modeling</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-store fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Retail</h5>
+                    <p class="text-secondary">Demand forecasting, inventory optimization, price modeling</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-sync fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Subscription Services</h5>
+                    <p class="text-secondary">Churn prediction, lifetime value modeling, growth forecasting</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ready to Predict the Future?</h2>
+                <p class="lead mb-4">
+                    If your current reporting only tells you what happened yesterday, you're already behind. With advanced analytics and forecasting, you can anticipate tomorrow and plan with confidence.
+                </p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-5">Schedule Strategy Session</a>
+                    <a href="{{ url_for('main.about') }}" class="btn btn-outline-light btn-lg px-5">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

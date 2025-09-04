@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}Data Integration & Automation{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-link fa-2x text-white"></i>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-0">Data Integration & Automation</h1>
+                </div>
+                <p class="lead mb-4">
+                    Unifying Your Data Into a Single Source of Truth. Bring all your business data together in one place and ensure it flows seamlessly with automated pipelines.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-4">Get Started</a>
+                    <a href="#why-integration" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bg-white bg-opacity-10 rounded-3 p-4">
+                    <i class="fas fa-project-diagram fa-5x text-white mb-3"></i>
+                    <h5 class="text-white">Unified Data Platform</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Data Integration Matters -->
+<section id="why-integration" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Data Integration Matters</h2>
+                <p class="lead text-secondary">
+                    Without integration, you're stuck manually exporting CSVs, reconciling spreadsheets, and wasting hours just to get a basic report.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-check-circle fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Accuracy</h5>
+                    <p class="text-secondary">No manual errors from copy-pasting</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-tachometer-alt fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Speed</h5>
+                    <p class="text-secondary">Reports update automatically in near real-time</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-shield-alt fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Trust</h5>
+                    <p class="text-secondary">One version of the truth for every team</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-expand-arrows-alt fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Scalability</h5>
+                    <p class="text-secondary">As your tools grow, your data ecosystem adapts</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="bg-light rounded-3 p-4">
+                    <p class="lead mb-0">
+                        <strong>Automation</strong> adds another layer, ensuring your reports and dashboards update themselves, freeing your team to focus on decisions, not data wrangling.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Offer -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">What We Offer</h2>
+                <p class="lead text-secondary">
+                    Comprehensive integration and automation solutions for your entire data ecosystem
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-plug fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Source Connectivity</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We connect all your platforms — Google Ads, Facebook Ads, GA4, CRMs, e-commerce systems, call tracking tools, and more — into a central data warehouse like Google BigQuery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-tools fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Commercial & Open-Source Tools</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We work with enterprise-grade connectors like Fivetran and Funnel.io, as well as open-source tools like Airbyte. This gives you flexibility depending on your budget and needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-code fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Custom Connectors</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            When a ready-made connector doesn't exist, we build one. From CRMs like Go High Level to call tracking platforms like CallRail, or any REST API, we ensure no data source is left behind.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-sync-alt fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Automated Workflows</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We set up automated pipelines so data flows continuously without manual intervention. Whether daily, hourly, or near real-time, your dashboards always stay fresh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow-sm bg-primary text-white">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-eye fa-2x me-3"></i>
+                            <h4 class="fw-bold mb-0">Data Validation & Monitoring</h4>
+                        </div>
+                        <p class="mb-0">
+                            Automation doesn't just move data — it safeguards it. We build checks to detect anomalies, missing values, or failed syncs, so you can trust the data you see.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who Benefits -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Who Benefits From Integration & Automation?</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-users fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Agencies</h5>
+                        <p class="text-secondary">Tired of spending hours preparing client reports</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-store fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Retailers</h5>
+                        <p class="text-secondary">Needing to unify sales, shipping, and inventory data</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-sync fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Subscription Businesses</h5>
+                        <p class="text-secondary">Consolidating churn, revenue, and customer lifecycle metrics</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-user-tie fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Executives</h5>
+                        <p class="text-secondary">Looking for one dashboard instead of 20 disconnected tools</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Datacharted -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Choose Datacharted?</h2>
+                <p class="lead text-secondary">
+                    We're not tied to any single platform — meaning we choose what's best for you, not for a vendor.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-award fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Extensive Experience</h5>
+                    <p class="text-secondary">
+                        Experience across hundreds of integrations
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-handshake fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Proven Track Record</h5>
+                    <p class="text-secondary">
+                        Long-term automation projects with sustained success
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-cogs fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Custom Solutions</h5>
+                    <p class="text-secondary">
+                        Ability to handle both standard and highly custom use cases
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ready to Build Your Single Source of Truth?</h2>
+                <p class="lead mb-4">
+                    Data integration and automation is the backbone of any modern data strategy. Without it, reporting remains slow, manual, and error-prone.
+                </p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-5">Schedule Consultation</a>
+                    <a href="{{ url_for('main.about') }}" class="btn btn-outline-light btn-lg px-5">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

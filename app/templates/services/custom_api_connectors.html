@@ -1,0 +1,414 @@
+{% extends "base.html" %}
+
+{% block title %}Custom API Connectors{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-plug fa-2x text-white"></i>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-0">Custom API Connectors</h1>
+                </div>
+                <p class="lead mb-4">
+                    Connecting Every Data Source — Even When Tools Don't Exist. If a platform has a REST API, we can connect it, extract its data, and feed it into your data warehouse for seamless reporting.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-4">Get Started</a>
+                    <a href="#why-custom" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bg-white bg-opacity-10 rounded-3 p-4">
+                    <i class="fas fa-code fa-5x text-white mb-3"></i>
+                    <h5 class="text-white">Custom Development</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Custom Connectors Matter -->
+<section id="why-custom" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Custom Connectors Matter</h2>
+                <p class="lead text-secondary">
+                    Not all platforms provide ready-made connectors. Many CRMs, call tracking systems, or niche SaaS tools don't integrate with your existing data stack.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6">
+                <div class="card border-danger h-100">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>The Problem</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary mb-3">
+                            Standard connectors (Fivetran, Airbyte, Funnel.io) cover many popular tools — but they can't keep up with every niche platform or fast-changing API.
+                        </p>
+                        <p class="text-secondary mb-0">
+                            <strong>Without integration, valuable information gets stuck in silos</strong> — impossible to combine with the rest of your reporting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card border-success h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-check me-2"></i>The Solution</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary mb-3">Custom connectors ensure:</p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-eye text-success me-2"></i><strong>Complete visibility</strong> – every platform contributes to your reporting</li>
+                            <li class="mb-2"><i class="fas fa-cogs text-success me-2"></i><strong>Flexibility</strong> – connectors adapt to your specific needs and business logic</li>
+                            <li class="mb-2"><i class="fas fa-sync-alt text-success me-2"></i><strong>Scalability</strong> – once built, connectors run automatically</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Offer -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">What We Offer</h2>
+                <p class="lead text-secondary">
+                    Comprehensive custom API connector development and maintenance services
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-code fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Connector Development for Any REST API</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            If your tool provides an API, we can build a connector — handling authentication, pagination, error handling, and data extraction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-tools fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Popular Platforms We Support</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We've built connectors for CRMs like Go High Level, call tracking systems like CallRail, and many other niche platforms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-google fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">BigQuery Integration</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            Our connectors don't just pull data — they load it into structured tables in Google BigQuery, ready for transformation and visualization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-eye fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Monitoring & Maintenance</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            APIs change. We provide ongoing monitoring and quick fixes when endpoints are updated, so your data pipelines never break.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow-sm bg-primary text-white">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-cogs fa-2x me-3"></i>
+                            <h4 class="fw-bold mb-0">Custom Business Logic</h4>
+                        </div>
+                        <p class="mb-0">
+                            Beyond extraction, we can enrich and reshape API data (for example, mapping campaign IDs, normalizing timestamps, or calculating KPIs) before it hits your dashboards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Platform Examples -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Platforms We've Connected</h2>
+                <p class="lead text-secondary">
+                    Examples of custom connectors we've built for clients across different industries
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-users me-2 text-secondary-blue"></i>
+                            CRM Systems
+                        </h5>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Go High Level</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom CRMs</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Niche industry platforms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-phone me-2 text-secondary-blue"></i>
+                            Call Tracking
+                        </h5>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>CallRail</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>CallTrackingMetrics</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom call systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-cog me-2 text-secondary-blue"></i>
+                            Specialized Tools
+                        </h5>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Industry-specific SaaS</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Internal APIs</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Legacy systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Development Process -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Our Development Process</h2>
+                <p class="lead text-secondary">
+                    Proven methodology for building reliable, maintainable API connectors
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-secondary-blue text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold">1</span>
+                    </div>
+                    <h4 class="fw-bold">API Analysis</h4>
+                    <p class="text-secondary">
+                        We analyze the API documentation, authentication methods, and data structure
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-secondary-blue text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold">2</span>
+                    </div>
+                    <h4 class="fw-bold">Connector Development</h4>
+                    <p class="text-secondary">
+                        Build robust connector with error handling, rate limiting, and data validation
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-secondary-blue text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold">3</span>
+                    </div>
+                    <h4 class="fw-bold">Testing & Deployment</h4>
+                    <p class="text-secondary">
+                        Thorough testing and deployment to your data warehouse with monitoring
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-secondary-blue text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold">4</span>
+                    </div>
+                    <h4 class="fw-bold">Ongoing Support</h4>
+                    <p class="text-secondary">
+                        Continuous monitoring and maintenance to ensure reliable data flow
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who Benefits -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Who Benefits From Custom Connectors?</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-users fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Agencies</h5>
+                        <p class="text-secondary">Relying on client-specific CRMs or lead tracking tools</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-store fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Retailers</h5>
+                        <p class="text-secondary">Needing integrations with shipping, logistics, or ERP systems</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-rocket fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Startups</h5>
+                        <p class="text-secondary">Using new SaaS platforms that don't yet have prebuilt connectors</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-building fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Enterprises</h5>
+                        <p class="text-secondary">That require custom logic not covered by off-the-shelf tools</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Datacharted -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Choose Datacharted?</h2>
+                <p class="lead text-secondary">
+                    We bring together technical skill and business understanding. Unlike generic connector providers, we provide end-to-end solutions.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-code fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Custom & Reliable</h5>
+                    <p class="text-secondary">
+                        Write custom, reliable connectors tailored to your specific needs
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-database fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Full Stack Expertise</h5>
+                    <p class="text-secondary">
+                        Understand both API engineering and data modeling, ensuring business-ready output
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-headset fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">End-to-End Support</h5>
+                    <p class="text-secondary">
+                        Provide complete support — from coding to monitoring and maintenance
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ready to Connect Every Data Source?</h2>
+                <p class="lead mb-4">
+                    Don't let missing connectors hold back your reporting. With Custom API Connectors, you can integrate any platform into your data ecosystem.
+                </p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-5">Discuss Data Sources</a>
+                    <a href="{{ url_for('main.about') }}" class="btn btn-outline-light btn-lg px-5">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

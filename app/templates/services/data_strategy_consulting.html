@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}Data Strategy & Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-chess fa-2x text-white"></i>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-0">Data Strategy & Consulting</h1>
+                </div>
+                <p class="lead mb-4">
+                    Aligning Your Data With Your Business Goals. Transform raw information into actionable insights through a structured and business-driven data strategy that grows with your business.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-4">Get Started</a>
+                    <a href="#why-strategy" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bg-white bg-opacity-10 rounded-3 p-4">
+                    <i class="fas fa-lightbulb fa-5x text-white mb-3"></i>
+                    <h5 class="text-white">Strategic Planning</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Data Strategy Matters -->
+<section id="why-strategy" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Data Strategy Matters</h2>
+                <p class="lead text-secondary">
+                    A clear data strategy ensures that your business doesn't just collect information — it uses it effectively.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-unlink fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Break Down Silos</h5>
+                    <p class="text-secondary">Unify platforms and tools for seamless data flow</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-bullseye fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Define KPIs</h5>
+                    <p class="text-secondary">Establish metrics that reflect your true business goals</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-expand-arrows-alt fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Build Scalable Frameworks</h5>
+                    <p class="text-secondary">Create systems that grow as your business grows</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-foundation fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Lay Foundation</h5>
+                    <p class="text-secondary">Enable advanced analytics and decision-making</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Offer -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">What We Offer</h2>
+                <p class="lead text-secondary">
+                    We work as an extension of your team to create a comprehensive data strategy
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-search fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Assess Your Current State</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We audit your existing tools, data flows, and reporting processes to identify redundancies, gaps, and opportunities for optimization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-flag fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Define Goals & KPIs</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            Together, we establish a clear vision for success — whether it's reducing customer acquisition costs, improving retention, or scaling efficiently.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-route fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Design a Data Roadmap</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            We create a step-by-step plan to integrate, clean, and structure your data, covering tool alignment, storage strategy, and reporting workflows.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-tools fa-2x text-secondary-blue me-3"></i>
+                            <h4 class="fw-bold mb-0">Recommend Tools & Architecture</h4>
+                        </div>
+                        <p class="text-secondary mb-4">
+                            From Airbyte and Fivetran to custom API connectors, we recommend the most cost-effective and scalable solutions tailored to your business.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow-sm bg-primary text-white">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-hands-helping fa-2x me-3"></i>
+                            <h4 class="fw-bold mb-0">Support Execution</h4>
+                        </div>
+                        <p class="mb-0">
+                            Beyond strategy, we provide hands-on support to implement the roadmap, train teams, and ensure long-term success.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who Benefits -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Who Benefits From Data Strategy & Consulting?</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-bullhorn fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Marketing Teams</h5>
+                        <p class="text-secondary">Who need clarity on campaign ROI</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-shopping-cart fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">E-commerce Companies</h5>
+                        <p class="text-secondary">Dealing with fragmented order, customer, and logistics data</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-users fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Agencies</h5>
+                        <p class="text-secondary">Managing performance reporting for multiple clients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-user-tie fa-3x text-secondary-blue mb-3"></i>
+                        <h5 class="fw-bold">Executives</h5>
+                        <p class="text-secondary">Seeking a "single source of truth" for decision-making</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Datacharted -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Choose Datacharted?</h2>
+                <p class="lead text-secondary">
+                    With over 18 years of experience in information management and business intelligence, we don't just provide generic frameworks — we design practical, business-first strategies.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-cogs fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Technical Expertise</h5>
+                    <p class="text-secondary">
+                        Expertise in both commercial tools (Fivetran, Funnel.io) and open-source solutions (Airbyte, custom APIs)
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-handshake fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Proven Track Record</h5>
+                    <p class="text-secondary">
+                        Long-term client partnerships with agencies, retailers, and startups
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
+                        <i class="fas fa-brain fa-2x text-secondary-blue"></i>
+                    </div>
+                    <h5 class="fw-bold">Business Acumen</h5>
+                    <p class="text-secondary">
+                        A unique mix of technical depth and business understanding
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ready to Build a Smarter Data Foundation?</h2>
+                <p class="lead mb-4">
+                    If your business is ready to move beyond spreadsheets and disconnected reports, our Data Strategy & Consulting service is the place to begin.
+                </p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="{{ url_for('main.get_started') }}" class="btn btn-light btn-lg px-5">Book Free Consultation</a>
+                    <a href="{{ url_for('main.about') }}" class="btn btn-outline-light btn-lg px-5">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
