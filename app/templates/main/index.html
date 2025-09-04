@@ -278,130 +278,52 @@
     </div>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Client Success Stories Section -->
 <section class="py-5 bg-light">
     <div class="container">
         <div class="row text-center mb-5">
             <div class="col-lg-8 mx-auto">
-                <h2 class="display-5 fw-bold mb-3 text-secondary-blue">Testimonials</h2>
+                <h2 class="display-5 fw-bold mb-3 text-secondary-blue">Client Success Stories</h2>
                 <p class="lead text-secondary">
-                    See what our clients say about transforming their business with data-driven insights.
+                    Real results from businesses that transformed their data strategy with DataCharted.
                 </p>
             </div>
         </div>
         
-        <!-- Testimonials Slider -->
-        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <!-- Testimonial 1 -->
-                <div class="carousel-item active">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body p-5 text-center">
-                                    <div class="mb-4">
-                                        <img src="https://via.placeholder.com/80x80/00B4D8/FFFFFF?text=CJ" 
-                                             alt="Client Photo" class="rounded-circle mb-3" width="80" height="80">
-                                    </div>
-                                    <blockquote class="blockquote mb-4">
-                                        <p class="lead">"DataCharted transformed how we understand our marketing performance. The insights we get now help us make better decisions every day."</p>
-                                    </blockquote>
-                                    <footer class="blockquote-footer">
-                                        <strong>Charles Johnson</strong>
-                                        <cite title="Source Title">CEO, Growth Marketing Agency</cite>
-                                    </footer>
-                                </div>
+        <!-- Success Stories Grid -->
+        <div class="row g-4">
+            <!-- Success Story 1: LeadCenter.AI -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm testimonial-card">
+                    <div class="card-body p-4">
+                        <!-- Client Logo Section -->
+                        <div class="client-logo-section mb-4 text-center">
+                            <div class="logo-container p-3 bg-white rounded shadow-sm d-inline-block">
+                                <img src="{{ url_for('static', filename='images/clients/leadcenter-logo.png') }}" 
+                                     alt="LeadCenter.AI Logo" class="client-logo" style="height: 60px; max-width: 200px;">
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="carousel-item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body p-5 text-center">
-                                    <div class="mb-4">
-                                        <img src="https://via.placeholder.com/80x80/00B4D8/FFFFFF?text=SM" 
-                                             alt="Client Photo" class="rounded-circle mb-3" width="80" height="80">
-                                    </div>
-                                    <blockquote class="blockquote mb-4">
-                                        <p class="lead">"The automated reporting saves us hours every week. We can focus on strategy instead of manual data collection."</p>
-                                    </blockquote>
-                                    <footer class="blockquote-footer">
-                                        <strong>Sarah Martinez</strong>
-                                        <cite title="Source Title">Marketing Director, E-commerce Company</cite>
-                                    </footer>
+                        
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-content">
+                            <blockquote class="mb-4">
+                                <p class="text-dark mb-3" style="font-size: 1.1rem; line-height: 1.6;">
+                                    "LeadCenter.AI struggled with fragmented reports across multiple platforms, slowing decision-making. We created BigQuery data models and unified dashboards that tracked leads and conversions in one place."
+                                </p>
+                                <p class="text-primary fw-semibold mb-0">
+                                    Executives now rely on a single source of truth for sales performance, identifying bottlenecks early and scaling client accounts with confidence.
+                                </p>
+                            </blockquote>
+                            
+                            <!-- Client Info -->
+                            <div class="client-info d-flex align-items-center">
+                                <div class="client-avatar me-3">
+                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" 
+                                         style="width: 50px; height: 50px; font-weight: bold;">M</div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="carousel-item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body p-5 text-center">
-                                    <div class="mb-4">
-                                        <img src="https://via.placeholder.com/80x80/00B4D8/FFFFFF?text=DW" 
-                                             alt="Client Photo" class="rounded-circle mb-3" width="80" height="80">
-                                    </div>
-                                    <blockquote class="blockquote mb-4">
-                                        <p class="lead">"Finally, all our data in one place! The dashboards are beautiful and the insights are actionable."</p>
-                                    </blockquote>
-                                    <footer class="blockquote-footer">
-                                        <strong>David Wilson</strong>
-                                        <cite title="Source Title">Operations Manager, SaaS Startup</cite>
-                                    </footer>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 4 -->
-                <div class="carousel-item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body p-5 text-center">
-                                    <div class="mb-4">
-                                        <img src="https://via.placeholder.com/80x80/00B4D8/FFFFFF?text=LT" 
-                                             alt="Client Photo" class="rounded-circle mb-3" width="80" height="80">
-                                    </div>
-                                    <blockquote class="blockquote mb-4">
-                                        <p class="lead">"The ROI tracking across all our marketing channels is incredible. We've optimized our ad spend by 40%."</p>
-                                    </blockquote>
-                                    <footer class="blockquote-footer">
-                                        <strong>Lisa Thompson</strong>
-                                        <cite title="Source Title">CMO, Digital Agency</cite>
-                                    </footer>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 5 -->
-                <div class="carousel-item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body p-5 text-center">
-                                    <div class="mb-4">
-                                        <img src="https://via.placeholder.com/80x80/00B4D8/FFFFFF?text=MR" 
-                                             alt="Client Photo" class="rounded-circle mb-3" width="80" height="80">
-                                    </div>
-                                    <blockquote class="blockquote mb-4">
-                                        <p class="lead">"DataCharted's team understood our needs perfectly. The custom dashboard they built exceeded our expectations."</p>
-                                    </blockquote>
-                                    <footer class="blockquote-footer">
-                                        <strong>Michael Rodriguez</strong>
-                                        <cite title="Source Title">Founder, Tech Consulting Firm</cite>
-                                    </footer>
+                                <div>
+                                    <h6 class="mb-0 fw-bold text-dark">Mustapha</h6>
+                                    <small class="text-muted">Leadcenter.ai</small>
                                 </div>
                             </div>
                         </div>
@@ -409,23 +331,148 @@
                 </div>
             </div>
             
-            <!-- Carousel Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <!-- Success Story 2: PlumberSEO -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm testimonial-card">
+                    <div class="card-body p-4">
+                        <!-- Client Logo Section -->
+                        <div class="client-logo-section mb-4 text-center">
+                            <div class="logo-container p-3 bg-white rounded shadow-sm d-inline-block">
+                                <img src="{{ url_for('static', filename='images/clients/plumberseo-logo.png') }}" 
+                                     alt="PlumberSEO Logo" class="client-logo" style="height: 60px; max-width: 200px;">
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-content">
+                            <blockquote class="mb-4">
+                                <p class="text-dark mb-3" style="font-size: 1.1rem; line-height: 1.6;">
+                                    "PlumberSEO needed to bring together Google Ads, LSAs, and call tracking data for their HVAC and plumbing clients. We set up pipelines into BigQuery and designed Looker Studio dashboards to consolidate performance reporting."
+                                </p>
+                                <p class="text-primary fw-semibold mb-0">
+                                    Now their team can monitor campaign ROI across dozens of clients in real time, saving hours on manual reports while delivering more value to their customers.
+                                </p>
+                            </blockquote>
+                            
+                            <!-- Client Info -->
+                            <div class="client-info d-flex align-items-center">
+                                <div class="client-avatar me-3">
+                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" 
+                                         style="width: 50px; height: 50px; font-weight: bold;">AI</div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold text-dark">Alan Iturrizaga</h6>
+                                    <small class="text-muted">PlumberSEO</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <!-- Success Story 3: Relentless Digital -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm testimonial-card">
+                    <div class="card-body p-4">
+                        <!-- Client Logo Section -->
+                        <div class="client-logo-section mb-4 text-center">
+                            <div class="logo-container p-3 bg-white rounded shadow-sm d-inline-block">
+                                <img src="{{ url_for('static', filename='images/clients/relentless-logo.png') }}" 
+                                     alt="Relentless Digital Logo" class="client-logo" style="height: 60px; max-width: 200px;">
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-content">
+                            <blockquote class="mb-4">
+                                <p class="text-dark mb-3" style="font-size: 1.1rem; line-height: 1.6;">
+                                    "Relentless Digital was managing fragmented data across ad platforms, GA4, and CRM tools. We built a clean data warehouse in BigQuery and created custom dashboards highlighting the KPIs that matter most to their clients."
+                                </p>
+                                <p class="text-primary fw-semibold mb-0">
+                                    The agency now has accurate, automated reporting that scales as they grow — improving efficiency, transparency, and client trust.
+                                </p>
+                            </blockquote>
+                            
+                            <!-- Client Info -->
+                            <div class="client-info d-flex align-items-center">
+                                <div class="client-avatar me-3">
+                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" 
+                                         style="width: 50px; height: 50px; font-weight: bold;">JC</div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold text-dark">Josh Crouch</h6>
+                                    <small class="text-muted">Relentless Digital</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Success Story 4: KickStart Dental Marketing -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm testimonial-card">
+                    <div class="card-body p-4">
+                        <!-- Client Logo Section -->
+                        <div class="client-logo-section mb-4 text-center">
+                            <div class="logo-container p-3 bg-white rounded shadow-sm d-inline-block">
+                                <img src="{{ url_for('static', filename='images/clients/kickstart-logo.png') }}" 
+                                     alt="KickStart Dental Marketing Logo" class="client-logo" style="height: 60px; max-width: 200px;">
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-content">
+                            <blockquote class="mb-4">
+                                <p class="text-dark mb-3" style="font-size: 1.1rem; line-height: 1.6;">
+                                    "KickStart needed a reliable way to bring together marketing and call tracking data. We built automated pipelines into BigQuery and interactive dashboards in Looker Studio, giving them a unified view of campaign ROI."
+                                </p>
+                                <p class="text-primary fw-semibold mb-0">
+                                    The team now saves hours each week on reporting and uses real-time insights to adjust budgets quickly, improving lead quality and overall marketing efficiency.
+                                </p>
+                            </blockquote>
+                            
+                            <!-- Client Info -->
+                            <div class="client-info d-flex align-items-center">
+                                <div class="client-avatar me-3">
+                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" 
+                                         style="width: 50px; height: 50px; font-weight: bold;">CP</div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold text-dark">Chris Pistorious</h6>
+                                    <small class="text-muted">KickStart Dental Marketing</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Client Logos Strip -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="text-center mb-4">
+                    <h5 class="text-muted fw-normal">Trusted by leading businesses</h5>
+                </div>
+                <div class="client-logos-strip d-flex justify-content-center align-items-center flex-wrap gap-4">
+                    <div class="client-logo-item p-3 bg-white rounded shadow-sm">
+                        <img src="{{ url_for('static', filename='images/clients/leadcenter-logo.png') }}" 
+                             alt="LeadCenter.AI" style="height: 40px; max-width: 120px; opacity: 0.7;">
+                    </div>
+                    <div class="client-logo-item p-3 bg-white rounded shadow-sm">
+                        <img src="{{ url_for('static', filename='images/clients/plumberseo-logo.png') }}" 
+                             alt="PlumberSEO" style="height: 40px; max-width: 120px; opacity: 0.7;">
+                    </div>
+                    <div class="client-logo-item p-3 bg-white rounded shadow-sm">
+                        <img src="{{ url_for('static', filename='images/clients/relentless-logo.png') }}" 
+                             alt="Relentless Digital" style="height: 40px; max-width: 120px; opacity: 0.7;">
+                    </div>
+                    <div class="client-logo-item p-3 bg-white rounded shadow-sm">
+                        <img src="{{ url_for('static', filename='images/clients/kickstart-logo.png') }}" 
+                             alt="KickStart Dental Marketing" style="height: 40px; max-width: 120px; opacity: 0.7;">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
