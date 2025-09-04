@@ -370,6 +370,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 320px;
         }
         
         .testimonial-card:hover {
@@ -439,6 +440,24 @@
             width: 100%;
             height: 100%;
             min-height: 180px;
+        }
+        
+        .testimonial-card .card-body {
+            height: 100%;
+            display: flex;
+            align-items: stretch;
+        }
+        
+        .testimonial-card .row {
+            width: 100%;
+            margin: 0;
+        }
+        
+        .testimonial-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
         }
         
         .testimonial-card:hover .logo-container,
@@ -524,6 +543,10 @@
         /* Enhanced Carousel Transitions */
         .carousel-item {
             transition: transform 1.2s ease-in-out;
+        }
+        
+        .carousel-inner {
+            min-height: 320px;
         }
         
         .carousel-fade .carousel-item {
@@ -614,6 +637,10 @@
         }
         
         @media (max-width: 768px) {
+            .testimonial-card {
+                min-height: 280px;
+            }
+            
             .logo-container-large {
                 min-height: 100px;
             }
@@ -640,6 +667,10 @@
         }
         
         @media (max-width: 576px) {
+            .testimonial-card {
+                min-height: 240px;
+            }
+            
             .client-logo {
                 height: 50px !important;
                 max-width: 150px !important;
