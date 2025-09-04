@@ -393,8 +393,18 @@
             transition: filter 0.3s ease;
         }
         
-        .testimonial-card:hover .client-logo {
+        .client-logo-large {
+            object-fit: contain;
+            filter: grayscale(10%);
+            transition: all 0.3s ease;
+            max-height: 120px;
+            width: auto;
+        }
+        
+        .testimonial-card:hover .client-logo,
+        .testimonial-card:hover .client-logo-large {
             filter: grayscale(0%);
+            transform: scale(1.05);
         }
         
         .logo-container {
@@ -402,7 +412,17 @@
             border: 1px solid #e9ecef;
         }
         
-        .testimonial-card:hover .logo-container {
+        .logo-container-large {
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .testimonial-card:hover .logo-container,
+        .testimonial-card:hover .logo-container-large {
             border-color: var(--primary-color);
             box-shadow: 0 5px 15px rgba(2, 154, 157, 0.2);
         }
@@ -573,10 +593,37 @@
             }
         }
         
+        @media (max-width: 768px) {
+            .logo-container-large {
+                min-height: 100px;
+            }
+            
+            .client-logo-large {
+                max-height: 80px;
+            }
+            
+            .testimonial-content {
+                text-align: center;
+            }
+            
+            .client-info {
+                justify-content: center !important;
+            }
+        }
+        
         @media (max-width: 576px) {
             .client-logo {
                 height: 50px !important;
                 max-width: 150px !important;
+            }
+            
+            .client-logo-large {
+                max-height: 60px;
+            }
+            
+            .logo-container-large {
+                min-height: 80px;
+                padding: 1rem !important;
             }
             
             .client-logos-strip img {
@@ -596,6 +643,10 @@
             
             .carousel-control-icon-custom {
                 font-size: 14px;
+            }
+            
+            .card-body {
+                padding: 1.5rem !important;
             }
         }
     </style>
