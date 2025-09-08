@@ -16,202 +16,247 @@
         </div>
     </div>
 
-    <!-- Quick Stats -->
+    <!-- Progress Overview -->
     <div class="row g-4 mb-5">
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fas fa-plug fa-2x text-primary"></i>
-                    </div>
-                    <h5 class="card-title">Connected Sources</h5>
-                    <h3 class="text-primary">
-                        {% set connected = [current_user.google_ads_connected, current_user.meta_ads_connected, current_user.callrail_connected, current_user.ghl_connected] | select | list | length %}
-                        {{ connected }}/4
-                    </h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+        <div class="col-md-4">
+            <div class="card text-center h-100 border-2" id="step1-card">
+                <div class="card-body d-flex flex-column">
+                    <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3 mx-auto" style="width: 60px; height: 60px;">
                         <i class="fas fa-database fa-2x text-success"></i>
                     </div>
-                    <h5 class="card-title">BigQuery Project</h5>
-                    <h3 class="text-success">
-                        {% if current_user.bigquery_project_id %}Active{% else %}Pending{% endif %}
-                    </h3>
+                    <h5 class="card-title">Step 1: BigQuery Setup</h5>
+                    <p class="text-muted small mb-3">Foundation for your data warehouse</p>
+                    <div class="mt-auto">
+                        <h4 id="bigquery-status" class="text-success mb-2">2 Active</h4>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-success" id="bigquery-progress" role="progressbar" style="width: 100%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fas fa-server fa-2x text-info"></i>
+        <div class="col-md-4">
+            <div class="card text-center h-100 border-2" id="step2-card">
+                <div class="card-body d-flex flex-column">
+                    <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3 mx-auto" style="width: 60px; height: 60px;">
+                        <i class="fas fa-stream fa-2x text-info"></i>
                     </div>
-                    <h5 class="card-title">VPS Status</h5>
-                    <h3 class="text-info">
-                        {% if current_user.vps_ip %}Active{% else %}Pending{% endif %}
-                    </h3>
+                    <h5 class="card-title">Step 2: Data Pipeline</h5>
+                    <p class="text-muted small mb-3">VPS + Airbyte + Source Connections</p>
+                    <div class="mt-auto">
+                        <h4 id="pipeline-status" class="text-muted mb-2">Not Started</h4>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-info" id="pipeline-progress" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fas fa-chart-bar fa-2x text-warning"></i>
+        <div class="col-md-4">
+            <div class="card text-center h-100 border-2" id="step3-card">
+                <div class="card-body d-flex flex-column">
+                    <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3 mx-auto" style="width: 60px; height: 60px;">
+                        <i class="fas fa-chart-line fa-2x text-warning"></i>
                     </div>
-                    <h5 class="card-title">Reports</h5>
-                    <h3 class="text-warning">Ready</h3>
+                    <h5 class="card-title">Step 3: Reports & Analytics</h5>
+                    <p class="text-muted small mb-3">Automated dashboards & insights</p>
+                    <div class="mt-auto">
+                        <h4 id="reports-status" class="text-muted mb-2">Waiting</h4>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-warning" id="reports-progress" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Data Sources Section -->
-    <div class="row mb-5">
+    <!-- Next Steps Alert -->
+    <div class="row mb-4" id="next-steps-alert">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header bg-white">
-                    <h4 class="mb-0">
-                        <i class="fas fa-plug me-2"></i>Data Source Connections
+            <div class="alert alert-primary border-0 shadow-sm">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-lightbulb fa-2x me-3"></i>
+                    <div>
+                        <h6 class="alert-heading mb-1">What's Next?</h6>
+                        <p class="mb-0" id="next-steps-text">Great! You have BigQuery projects set up. Ready to deploy your data pipeline?</p>
+                    </div>
+                    <button class="btn btn-primary ms-auto" id="next-steps-btn" onclick="showNextStep()">Deploy Pipeline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 1: BigQuery Setup -->
+    <div class="row mb-5" id="section-bigquery">
+        <div class="col-12">
+            <div class="card border-success border-2">
+                <div class="card-header bg-success bg-opacity-10 d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0 text-success">
+                        <i class="fas fa-database me-2"></i>Step 1: BigQuery Setup
+                        <span class="badge bg-success ms-2">Active</span>
                     </h4>
+                    <button class="btn btn-success btn-sm" onclick="showCreateProjectModal()">
+                        <i class="fas fa-plus me-1"></i>New Project
+                    </button>
                 </div>
                 <div class="card-body">
+                    <p class="text-muted mb-3">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Your data warehouse foundation. Create managed BigQuery projects where all your data will be stored and analyzed.
+                    </p>
+                    <div id="bigquery-projects-list">
+                        <div class="text-center text-muted py-4">
+                            <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+                            <p>Loading projects...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2: Data Pipeline -->
+    <div class="row mb-5" id="section-pipeline">
+        <div class="col-12">
+            <div class="card border-info border-2" id="pipeline-card">
+                <div class="card-header bg-info bg-opacity-10 d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0 text-info">
+                        <i class="fas fa-stream me-2"></i>Step 2: Data Pipeline
+                        <span class="badge bg-secondary ms-2" id="pipeline-badge">Locked</span>
+                    </h4>
+                    <button class="btn btn-info btn-sm" id="deploy-pipeline-btn" onclick="deployPipeline()" disabled>
+                        <i class="fas fa-rocket me-1"></i>Deploy Pipeline
+                    </button>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-4">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Deploy your VPS with Airbyte and connect your data sources. This will create the pipeline to move data into BigQuery.
+                    </p>
+                    
+                    <!-- Pipeline Components -->
+                    <div class="row g-3">
+                        <!-- VPS Deployment -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-light">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-server fa-2x text-muted mb-3"></i>
+                                    <h6>VPS Deployment</h6>
+                                    <p class="small text-muted mb-3">DigitalOcean droplet with Airbyte</p>
+                                    <span class="badge bg-secondary" id="vps-status-badge">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Airbyte Setup -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-light">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-exchange-alt fa-2x text-muted mb-3"></i>
+                                    <h6>Airbyte Installation</h6>
+                                    <p class="small text-muted mb-3">Data integration platform</p>
+                                    <span class="badge bg-secondary" id="airbyte-status-badge">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Source Connections -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-light">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-plug fa-2x text-muted mb-3"></i>
+                                    <h6>Data Sources</h6>
+                                    <p class="small text-muted mb-3">Connect your platforms</p>
+                                    <span class="badge bg-secondary" id="sources-status-badge">0/4 Connected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Sources Preview (Collapsed by default) -->
+                    <div class="mt-4">
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#sourcesPreview" aria-expanded="false">
+                            <i class="fas fa-eye me-1"></i>Preview Data Sources
+                        </button>
+                        <div class="collapse mt-3" id="sourcesPreview">
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center p-2 border rounded bg-light">
+                                        <i class="fab fa-google fa-lg text-danger me-2"></i>
+                                        <small><strong>Google Ads</strong> - Ad performance data</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center p-2 border rounded bg-light">
+                                        <i class="fab fa-facebook fa-lg text-primary me-2"></i>
+                                        <small><strong>Meta Ads</strong> - Facebook/Instagram campaigns</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center p-2 border rounded bg-light">
+                                        <i class="fas fa-phone fa-lg text-success me-2"></i>
+                                        <small><strong>CallRail</strong> - Call tracking & analytics</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center p-2 border rounded bg-light">
+                                        <i class="fas fa-cog fa-lg text-secondary me-2"></i>
+                                        <small><strong>GoHighLevel</strong> - CRM & automation data</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Reports & Analytics -->
+    <div class="row mb-5" id="section-reports">
+        <div class="col-12">
+            <div class="card border-warning border-2" id="reports-card">
+                <div class="card-header bg-warning bg-opacity-10 d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0 text-warning">
+                        <i class="fas fa-chart-line me-2"></i>Step 3: Reports & Analytics
+                        <span class="badge bg-secondary ms-2" id="reports-badge">Locked</span>
+                    </h4>
+                    <button class="btn btn-warning btn-sm" id="setup-reports-btn" onclick="setupReports()" disabled>
+                        <i class="fas fa-chart-bar me-1"></i>Setup Reports
+                    </button>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-4">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Automated Looker Studio dashboards will be created once your data pipeline is active and collecting data.
+                    </p>
+                    
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <div class="d-flex align-items-center p-3 border rounded">
-                                <div class="me-3">
-                                    <i class="fab fa-google fa-2x text-danger"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">Google Ads</h6>
-                                    <small class="text-muted">Connect your Google Ads account</small>
-                                </div>
-                                <div>
-                                    {% if current_user.google_ads_connected %}
-                                        <span class="badge bg-success">Connected</span>
-                                    {% else %}
-                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
-                                    {% endif %}
+                            <div class="card h-100 border-light">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-tachometer-alt fa-2x text-muted mb-3"></i>
+                                    <h6>Executive Dashboard</h6>
+                                    <p class="small text-muted mb-3">High-level KPIs and trends</p>
+                                    <span class="badge bg-secondary">Coming Soon</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-md-6">
-                            <div class="d-flex align-items-center p-3 border rounded">
-                                <div class="me-3">
-                                    <i class="fab fa-facebook fa-2x text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">Meta Ads</h6>
-                                    <small class="text-muted">Connect your Facebook/Instagram Ads</small>
-                                </div>
-                                <div>
-                                    {% if current_user.meta_ads_connected %}
-                                        <span class="badge bg-success">Connected</span>
-                                    {% else %}
-                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center p-3 border rounded">
-                                <div class="me-3">
-                                    <i class="fas fa-phone fa-2x text-success"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">CallRail</h6>
-                                    <small class="text-muted">Connect your CallRail account</small>
-                                </div>
-                                <div>
-                                    {% if current_user.callrail_connected %}
-                                        <span class="badge bg-success">Connected</span>
-                                    {% else %}
-                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center p-3 border rounded">
-                                <div class="me-3">
-                                    <i class="fas fa-cog fa-2x text-secondary"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">GoHighLevel</h6>
-                                    <small class="text-muted">Connect your GHL account</small>
-                                </div>
-                                <div>
-                                    {% if current_user.ghl_connected %}
-                                        <span class="badge bg-success">Connected</span>
-                                    {% else %}
-                                        <button class="btn btn-outline-primary btn-sm">Connect</button>
-                                    {% endif %}
+                            <div class="card h-100 border-light">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-ad fa-2x text-muted mb-3"></i>
+                                    <h6>Marketing Performance</h6>
+                                    <p class="small text-muted mb-3">Cross-platform ad analytics</p>
+                                    <span class="badge bg-secondary">Coming Soon</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Infrastructure Section -->
-    <div class="row mb-5">
-        <div class="col-md-6">
-            <div class="card h-100">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-database me-2"></i>BigQuery Project
-                    </h5>
-                </div>
-                <div class="card-body">
-                    {% if current_user.bigquery_project_id %}
-                        <div class="mb-3">
-                            <strong>Project ID:</strong> {{ current_user.bigquery_project_id }}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Dataset:</strong> {{ current_user.bigquery_dataset or 'Default' }}
-                        </div>
-                        <span class="badge bg-success">Active</span>
-                    {% else %}
-                        <p class="text-muted">Your BigQuery project will be created automatically when you connect your first data source.</p>
-                        <button class="btn btn-primary">Setup Now</button>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-6">
-            <div class="card h-100">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-server me-2"></i>VPS & Airbyte
-                    </h5>
-                </div>
-                <div class="card-body">
-                    {% if current_user.vps_ip %}
-                        <div class="mb-3">
-                            <strong>VPS IP:</strong> {{ current_user.vps_ip }}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Status:</strong> Running
-                        </div>
-                        <span class="badge bg-success">Active</span>
-                    {% else %}
-                        <p class="text-muted">Your dedicated VPS with Airbyte will be deployed when you're ready to start data collection.</p>
-                        <button class="btn btn-primary">Deploy Now</button>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -244,4 +289,691 @@
         </div>
     </div>
 </div>
+
+<!-- Create BigQuery Project Modal -->
+<div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createProjectModalLabel">Create BigQuery Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createProjectForm">
+                    <div class="mb-3">
+                        <label for="projectName" class="form-label">Project Name</label>
+                        <input type="text" class="form-control" id="projectName" name="project_name" required
+                               placeholder="e.g., My Marketing Data Project">
+                        <div class="form-text">Choose a descriptive name for your BigQuery project</div>
+                    </div>
+                    
+                    <div class="mb-3" id="folderNameGroup" style="display: none;">
+                        <label for="folderName" class="form-label">Organization Folder Name</label>
+                        <input type="text" class="form-control" id="folderName" name="folder_name"
+                               placeholder="e.g., My Company Data">
+                        <div class="form-text">
+                            This will be your dedicated folder in our GCP organization. 
+                            <strong>Prefix:</strong> <span id="folderPrefix"></span>-
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Managed BigQuery:</strong> We'll create and manage this project in our GCP environment. 
+                        You'll have viewer access and we'll handle all the technical setup.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="createProjectBtn" onclick="createBigQueryProject()">
+                    <i class="fas fa-plus me-1"></i>Create Project
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Progress Modal -->
+<div class="modal fade" id="progressModal" tabindex="-1" aria-labelledby="progressModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="progressModalLabel">
+                    <i class="fas fa-cogs me-2"></i>Creating BigQuery Project
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="mb-4">
+                    <h6 id="currentProjectName" class="text-muted"></h6>
+                    <div class="progress mb-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                             id="overallProgress" role="progressbar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-steps">
+                    <div class="step-item" id="step-validate">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle text-muted"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6 class="step-title">Validating Project Details</h6>
+                            <p class="step-description text-muted">Checking project name and folder requirements</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item" id="step-folder">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle text-muted"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6 class="step-title">Setting Up Organization Folder</h6>
+                            <p class="step-description text-muted">Creating or verifying your dedicated GCP folder</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item" id="step-project">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle text-muted"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6 class="step-title">Creating GCP Project</h6>
+                            <p class="step-description text-muted">Provisioning your BigQuery project in Google Cloud</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item" id="step-apis">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle text-muted"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6 class="step-title">Enabling Required APIs</h6>
+                            <p class="step-description text-muted">Activating BigQuery, IAM, and Resource Manager APIs</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item" id="step-billing">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle text-muted"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6 class="step-title">Configuring Billing</h6>
+                            <p class="step-description text-muted">Linking project to billing account</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item" id="step-complete">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle text-muted"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6 class="step-title">Project Ready</h6>
+                            <p class="step-description text-muted">Your BigQuery project is ready for data ingestion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="progressCloseBtn" onclick="closeProgressModal()" style="display: none;">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.progress-steps {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.step-item:last-child {
+    border-bottom: none;
+}
+
+.step-icon {
+    margin-right: 15px;
+    margin-top: 2px;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-title {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.step-description {
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.step-item.active .step-icon i {
+    color: #007bff !important;
+    animation: pulse 1.5s infinite;
+}
+
+.step-item.completed .step-icon i {
+    color: #28a745 !important;
+}
+
+.step-item.error .step-icon i {
+    color: #dc3545 !important;
+}
+
+.step-item.active .step-title {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.step-item.completed .step-title {
+    color: #28a745;
+}
+
+.step-item.error .step-title {
+    color: #dc3545;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+</style>
+
+<script>
+// Dashboard JavaScript for BigQuery management
+document.addEventListener('DOMContentLoaded', function() {
+    updateDashboardState();
+    checkUserFolderStatus();
+});
+
+function loadBigQueryProjects() {
+    fetch('/api/bigquery/projects')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('bigquery-projects-list');
+            
+            if (data.projects && data.projects.length > 0) {
+                container.innerHTML = data.projects.map(project => `
+                    <div class="border rounded p-3 mb-2">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">${project.project_name}</h6>
+                                <small class="text-muted">${project.project_id}</small>
+                                <div class="mt-2">
+                                    <span class="badge ${getStatusBadgeClass(project.status)}">${project.status}</span>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="viewProject('${project.project_id}')">
+                                        <i class="fas fa-eye me-2"></i>View Details
+                                    </a></li>
+                                    <li><a class="dropdown-item text-danger" href="#" onclick="deleteProject('${project.project_id}')">
+                                        <i class="fas fa-trash me-2"></i>Delete
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Update dashboard stats
+                updateBigQueryStatus(data.projects);
+            } else {
+                container.innerHTML = `
+                    <div class="text-center text-muted py-4">
+                        <i class="fas fa-database fa-3x mb-3"></i>
+                        <p>No BigQuery projects yet</p>
+                        <p class="small">Create your first managed BigQuery project to get started</p>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error loading BigQuery projects:', error);
+            document.getElementById('bigquery-projects-list').innerHTML = `
+                <div class="text-center text-danger py-4">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-3"></i>
+                    <p>Error loading projects</p>
+                </div>
+            `;
+        });
+}
+
+function loadDashboardStats() {
+    // This would load data sources count and other stats
+    // For now, we'll set defaults
+    document.getElementById('connected-sources-count').textContent = '0';
+    document.getElementById('vps-status').textContent = 'Pending';
+}
+
+function updateBigQueryStatus(projects) {
+    const statusElement = document.getElementById('bigquery-status');
+    const activeProjects = projects.filter(p => p.status === 'active').length;
+    
+    if (activeProjects > 0) {
+        statusElement.textContent = `${activeProjects} Active`;
+        statusElement.className = 'text-success';
+    } else {
+        const creatingProjects = projects.filter(p => p.status === 'creating').length;
+        if (creatingProjects > 0) {
+            statusElement.textContent = 'Creating...';
+            statusElement.className = 'text-warning';
+        } else {
+            statusElement.textContent = 'Pending';
+            statusElement.className = 'text-muted';
+        }
+    }
+}
+
+function getStatusBadgeClass(status) {
+    switch(status) {
+        case 'active': return 'bg-success';
+        case 'creating': return 'bg-warning';
+        case 'error': return 'bg-danger';
+        default: return 'bg-secondary';
+    }
+}
+
+function showCreateProjectModal() {
+    // Check if user needs a folder (first project)
+    checkUserFolderStatus();
+    
+    const modal = new bootstrap.Modal(document.getElementById('createProjectModal'));
+    modal.show();
+}
+
+function checkUserFolderStatus() {
+    // Get user's email domain for prefix
+    fetch('/api/user/status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.email) {
+                const domain = data.email.split('@')[1] || 'datacharted';
+                const cleanDomain = domain.toLowerCase().replace(/[^a-z0-9-]/g, '').substring(0, 20);
+                document.getElementById('folderPrefix').textContent = cleanDomain;
+            }
+        })
+        .catch(error => {
+            console.error('Error getting user status:', error);
+            document.getElementById('folderPrefix').textContent = 'datacharted';
+        });
+    
+    // Check if user has existing projects (to determine if folder name is needed)
+    fetch('/api/bigquery/projects')
+        .then(response => response.json())
+        .then(data => {
+            const hasProjects = data.projects && data.projects.length > 0;
+            const folderGroup = document.getElementById('folderNameGroup');
+            
+            if (!hasProjects) {
+                // First project - show folder name field
+                folderGroup.style.display = 'block';
+                document.getElementById('folderName').required = true;
+            } else {
+                // Has projects - hide folder name field
+                folderGroup.style.display = 'none';
+                document.getElementById('folderName').required = false;
+            }
+        })
+        .catch(error => {
+            console.error('Error checking projects:', error);
+            // Default to showing folder field
+            document.getElementById('folderNameGroup').style.display = 'block';
+        });
+}
+
+function createBigQueryProject() {
+    const form = document.getElementById('createProjectForm');
+    const formData = new FormData(form);
+    const projectName = formData.get('project_name');
+    const folderName = formData.get('folder_name');
+    
+    if (!projectName || projectName.trim().length < 3) {
+        alert('Please enter a project name (at least 3 characters)');
+        return;
+    }
+    
+    // Check if folder name is required and provided
+    const folderGroup = document.getElementById('folderNameGroup');
+    if (folderGroup.style.display !== 'none' && (!folderName || folderName.trim().length < 3)) {
+        alert('Please enter a folder name (at least 3 characters)');
+        return;
+    }
+    
+    // Close create modal and show progress modal
+    bootstrap.Modal.getInstance(document.getElementById('createProjectModal')).hide();
+    showProgressModal(projectName.trim());
+    
+    const requestBody = {
+        project_name: projectName.trim()
+    };
+    
+    if (folderName && folderName.trim()) {
+        requestBody.folder_name = folderName.trim();
+    }
+    
+    // Start the creation process with progress tracking
+    createProjectWithProgress(requestBody, form);
+}
+
+function createProjectWithProgress(requestBody, form) {
+    // Step 1: Validate
+    updateProgressStep('validate', 'active');
+    updateOverallProgress(10);
+    
+    // Simulate validation step
+    setTimeout(() => {
+        updateProgressStep('validate', 'completed');
+        
+        // Step 2: Start project creation
+        updateProgressStep('folder', 'active');
+        updateOverallProgress(20);
+        
+        // Make the actual API call
+        fetch('/api/bigquery/projects', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            
+            // Project creation initiated, now track progress
+            const projectId = data.project.project_id;
+            trackProjectCreationProgress(projectId, form);
+        })
+        .catch(error => {
+            console.error('Error creating project:', error);
+            updateProgressStep('folder', 'error');
+            updateProgressStep('project', 'error');
+            updateProgressStep('apis', 'error');
+            updateProgressStep('billing', 'error');
+            updateProgressStep('complete', 'error');
+            
+            document.getElementById('progressCloseBtn').style.display = 'block';
+            showAlert('danger', 'Error creating project: ' + error.message);
+        });
+    }, 1000);
+}
+
+function trackProjectCreationProgress(projectId, form) {
+    let currentStep = 'folder';
+    let progressInterval;
+    let stepProgress = {
+        'folder': 20,
+        'project': 40,
+        'apis': 65,
+        'billing': 85,
+        'complete': 100
+    };
+    
+    // Simulate the progression through steps
+    const steps = ['folder', 'project', 'apis', 'billing', 'complete'];
+    let currentStepIndex = 0;
+    
+    progressInterval = setInterval(() => {
+        if (currentStepIndex < steps.length) {
+            const step = steps[currentStepIndex];
+            
+            // Complete current step and start next
+            if (currentStepIndex > 0) {
+                updateProgressStep(steps[currentStepIndex - 1], 'completed');
+            }
+            
+            updateProgressStep(step, 'active');
+            updateOverallProgress(stepProgress[step]);
+            
+            // If this is the last step, complete it and finish
+            if (currentStepIndex === steps.length - 1) {
+                setTimeout(() => {
+                    updateProgressStep(step, 'completed');
+                    
+                    // Show close button and reload projects
+                    document.getElementById('progressCloseBtn').style.display = 'block';
+                    form.reset();
+                    loadBigQueryProjects();
+                    
+                    // Show success message
+                    showAlert('success', 'BigQuery project created successfully!');
+                    
+                    clearInterval(progressInterval);
+                }, 2000);
+            }
+            
+            currentStepIndex++;
+        }
+    }, 2500); // Progress every 2.5 seconds
+}
+
+function viewProject(projectId) {
+    // This would open a detailed view of the project
+    console.log('View project:', projectId);
+    showAlert('info', 'Project details view coming soon!');
+}
+
+function deleteProject(projectId) {
+    if (!confirm('Are you sure you want to delete this BigQuery project? This action cannot be undone.')) {
+        return;
+    }
+    
+    fetch(`/api/bigquery/projects/${projectId}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        loadBigQueryProjects();
+        updateDashboardState();
+        showAlert('success', 'Project deleted successfully');
+    })
+    .catch(error => {
+        console.error('Error deleting project:', error);
+        showAlert('danger', 'Error deleting project: ' + error.message);
+    });
+}
+
+// Smart UX Functions
+function updateDashboardState() {
+    // This will be called after any state change to update the UI
+    loadBigQueryProjects();
+    updateProgressCards();
+    updateNextSteps();
+}
+
+function updateProgressCards() {
+    // Update the progress overview cards based on current state
+    fetch('/api/bigquery/projects')
+    .then(response => response.json())
+    .then(data => {
+        const projectCount = data.projects ? data.projects.length : 0;
+        
+        // Update Step 1 (BigQuery)
+        const bigqueryStatus = document.getElementById('bigquery-status');
+        const bigqueryProgress = document.getElementById('bigquery-progress');
+        const step1Card = document.getElementById('step1-card');
+        
+        if (projectCount > 0) {
+            bigqueryStatus.textContent = `${projectCount} Active`;
+            bigqueryProgress.style.width = '100%';
+            step1Card.classList.add('border-success');
+            step1Card.classList.remove('border-secondary');
+        } else {
+            bigqueryStatus.textContent = 'Not Started';
+            bigqueryProgress.style.width = '0%';
+            step1Card.classList.add('border-secondary');
+            step1Card.classList.remove('border-success');
+        }
+        
+        // Update Step 2 (Pipeline) availability
+        const pipelineCard = document.getElementById('pipeline-card');
+        const deployBtn = document.getElementById('deploy-pipeline-btn');
+        const pipelineBadge = document.getElementById('pipeline-badge');
+        
+        if (projectCount > 0) {
+            pipelineCard.classList.remove('opacity-50');
+            deployBtn.disabled = false;
+            pipelineBadge.textContent = 'Ready';
+            pipelineBadge.className = 'badge bg-info ms-2';
+        } else {
+            pipelineCard.classList.add('opacity-50');
+            deployBtn.disabled = true;
+            pipelineBadge.textContent = 'Locked';
+            pipelineBadge.className = 'badge bg-secondary ms-2';
+        }
+        
+        // Update Step 3 (Reports) - locked until pipeline is active
+        const reportsCard = document.getElementById('reports-card');
+        const reportsBtn = document.getElementById('setup-reports-btn');
+        const reportsBadge = document.getElementById('reports-badge');
+        
+        // For now, reports are always locked (until VPS/Airbyte is implemented)
+        reportsCard.classList.add('opacity-50');
+        reportsBtn.disabled = true;
+        reportsBadge.textContent = 'Locked';
+        reportsBadge.className = 'badge bg-secondary ms-2';
+    })
+    .catch(error => {
+        console.error('Error updating progress cards:', error);
+    });
+}
+
+function updateNextSteps() {
+    // Update the "What's Next?" alert based on current state
+    fetch('/api/bigquery/projects')
+    .then(response => response.json())
+    .then(data => {
+        const projectCount = data.projects ? data.projects.length : 0;
+        const nextStepsText = document.getElementById('next-steps-text');
+        const nextStepsBtn = document.getElementById('next-steps-btn');
+        
+        if (projectCount === 0) {
+            nextStepsText.textContent = 'Start by creating your first BigQuery project to set up your data warehouse foundation.';
+            nextStepsBtn.textContent = 'Create Project';
+            nextStepsBtn.onclick = showCreateProjectModal;
+        } else {
+            nextStepsText.textContent = 'Great! You have BigQuery projects set up. Ready to deploy your data pipeline?';
+            nextStepsBtn.textContent = 'Deploy Pipeline';
+            nextStepsBtn.onclick = showNextStep;
+        }
+    })
+    .catch(error => {
+        console.error('Error updating next steps:', error);
+    });
+}
+
+function showNextStep() {
+    // Scroll to the next logical step
+    const pipelineSection = document.getElementById('section-pipeline');
+    pipelineSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    // Highlight the pipeline section briefly
+    pipelineSection.classList.add('border-primary');
+    setTimeout(() => {
+        pipelineSection.classList.remove('border-primary');
+    }, 3000);
+}
+
+function deployPipeline() {
+    // This will be implemented when VPS module is ready
+    showAlert('info', 'VPS deployment coming soon! This will deploy a DigitalOcean VPS with Airbyte.');
+}
+
+function setupReports() {
+    // This will be implemented when reports module is ready
+    showAlert('info', 'Automated reports coming soon! This will create Looker Studio dashboards.');
+}
+
+function showProgressModal(projectName) {
+    // Reset all steps
+    const steps = ['validate', 'folder', 'project', 'apis', 'billing', 'complete'];
+    steps.forEach(step => {
+        const stepElement = document.getElementById(`step-${step}`);
+        stepElement.className = 'step-item';
+        stepElement.querySelector('.step-icon i').className = 'fas fa-check-circle text-muted';
+    });
+    
+    // Reset progress bar
+    document.getElementById('overallProgress').style.width = '0%';
+    document.getElementById('currentProjectName').textContent = `Project: ${projectName}`;
+    document.getElementById('progressCloseBtn').style.display = 'none';
+    
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('progressModal'));
+    modal.show();
+}
+
+function updateProgressStep(stepId, status) {
+    const stepElement = document.getElementById(`step-${stepId}`);
+    const icon = stepElement.querySelector('.step-icon i');
+    
+    // Remove existing classes
+    stepElement.classList.remove('active', 'completed', 'error');
+    
+    // Add new status
+    stepElement.classList.add(status);
+    
+    // Update icon based on status
+    if (status === 'active') {
+        icon.className = 'fas fa-spinner fa-spin text-primary';
+    } else if (status === 'completed') {
+        icon.className = 'fas fa-check-circle text-success';
+    } else if (status === 'error') {
+        icon.className = 'fas fa-times-circle text-danger';
+    }
+}
+
+function updateOverallProgress(percentage) {
+    document.getElementById('overallProgress').style.width = `${percentage}%`;
+}
+
+function closeProgressModal() {
+    bootstrap.Modal.getInstance(document.getElementById('progressModal')).hide();
+}
+
+function showAlert(type, message) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    
+    // Insert at the top of the container
+    const container = document.querySelector('.container');
+    container.insertBefore(alertDiv, container.firstChild);
+    
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+        if (alertDiv.parentNode) {
+            alertDiv.remove();
+        }
+    }, 5000);
+}
+</script>
 {% endblock %}

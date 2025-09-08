@@ -105,11 +105,117 @@ def connect_ghl():
     """Connect GoHighLevel account"""
     return jsonify({'message': 'GoHighLevel connection endpoint - coming soon'})
 
-@bp.route('/setup/bigquery', methods=['POST'])
+# BigQuery Management Endpoints
+@bp.route('/bigquery/projects', methods=['GET'])
 @login_required
-def setup_bigquery():
-    """Setup BigQuery project and dataset"""
-    return jsonify({'message': 'BigQuery setup endpoint - coming soon'})
+def list_bigquery_projects():
+    """List all BigQuery projects for the current user"""
+    from app.services.bigquery_service import bigquery_service
+    
+    try:
+        projects = bigquery_service.list_user_projects(current_user)
+        return jsonify({
+            'projects': [project.to_dict() for project in projects],
+            'count': len(projects)
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@bp.route('/bigquery/projects', methods=['POST'])
+@login_required
+def create_bigquery_project():
+    """Create a new managed BigQuery project"""
+    from app.services.bigquery_service import bigquery_service
+    
+    data = request.get_json()
+    if not data or not data.get('project_name'):
+        return jsonify({'error': 'project_name is required'}), 400
+    
+    project_name = data['project_name'].strip()
+    if len(project_name) < 3 or len(project_name) > 100:
+        return jsonify({'error': 'project_name must be between 3 and 100 characters'}), 400
+    
+    # Optional folder name for first project
+    folder_name = data.get('folder_name', '').strip() if data.get('folder_name') else None
+    if folder_name and (len(folder_name) < 3 or len(folder_name) > 50):
+        return jsonify({'error': 'folder_name must be between 3 and 50 characters'}), 400
+    
+    try:
+        project = bigquery_service.create_managed_project(current_user, project_name, folder_name)
+        return jsonify({
+            'message': 'BigQuery project creation started',
+            'project': project.to_dict(),
+            'folder_info': {
+                'folder_id': current_user.gcp_folder_id,
+                'folder_name': current_user.gcp_folder_name
+            }
+        }), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@bp.route('/bigquery/projects/<project_id>', methods=['GET'])
+@login_required
+def get_bigquery_project(project_id):
+    """Get details of a specific BigQuery project"""
+    from app.services.bigquery_service import bigquery_service
+    
+    try:
+        project = bigquery_service.get_project(current_user, project_id)
+        if not project:
+            return jsonify({'error': 'Project not found'}), 404
+        
+        return jsonify({'project': project.to_dict()})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@bp.route('/bigquery/projects/<project_id>/status', methods=['GET'])
+@login_required
+def get_bigquery_project_status(project_id):
+    """Get the current status of a BigQuery project"""
+    from app.services.bigquery_service import bigquery_service
+    
+    try:
+        # Verify user owns this project
+        project = bigquery_service.get_project(current_user, project_id)
+        if not project:
+            return jsonify({'error': 'Project not found'}), 404
+        
+        status = bigquery_service.get_project_status(project_id)
+        return jsonify(status)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@bp.route('/bigquery/projects/creation-progress/<project_id>', methods=['GET'])
+@login_required
+def get_project_creation_progress(project_id):
+    """Get real-time progress of project creation"""
+    from app.services.bigquery_service import bigquery_service
+    
+    try:
+        # Verify user owns this project
+        project = bigquery_service.get_project(current_user, project_id)
+        if not project:
+            return jsonify({'error': 'Project not found'}), 404
+        
+        progress = bigquery_service.get_creation_progress(project_id)
+        return jsonify(progress)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@bp.route('/bigquery/projects/<project_id>', methods=['DELETE'])
+@login_required
+def delete_bigquery_project(project_id):
+    """Delete a BigQuery project (soft delete)"""
+    from app.services.bigquery_service import bigquery_service
+    
+    try:
+        success = bigquery_service.delete_project(current_user, project_id)
+        if not success:
+            return jsonify({'error': 'Project not found'}), 404
+        
+        return jsonify({'message': 'Project deleted successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @bp.route('/setup/vps', methods=['POST'])
 @login_required

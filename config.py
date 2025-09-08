@@ -29,9 +29,12 @@ class Config:
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER', 'support@datacharted.com')
     MAIL_MAX_EMAILS = int(os.environ.get('MAIL_MAX_EMAILS', 10))
     
-    # BigQuery settings (for future use)
+    # Google Cloud Platform settings
     GOOGLE_CLOUD_PROJECT = os.environ.get('GOOGLE_CLOUD_PROJECT')
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    GCP_BILLING_ACCOUNT_ID = os.environ.get('GCP_BILLING_ACCOUNT_ID')
+    GCP_ORGANIZATION_ID = os.environ.get('GCP_ORGANIZATION_ID')
+    GCP_FOLDER_ID = os.environ.get('GCP_FOLDER_ID')  # Optional: organize user projects
     
     # DigitalOcean settings (for future use)
     DIGITALOCEAN_TOKEN = os.environ.get('DIGITALOCEAN_TOKEN')
