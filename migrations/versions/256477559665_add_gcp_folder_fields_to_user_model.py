@@ -89,16 +89,21 @@ def upgrade():
         batch_op.create_index(batch_op.f('ix_vps_instances_droplet_id'), ['droplet_id'], unique=True)
 
     with op.batch_alter_table('user', schema=None) as batch_op:
+        # Add new columns
         batch_op.add_column(sa.Column('gcp_folder_id', sa.String(length=128), nullable=True))
         batch_op.add_column(sa.Column('gcp_folder_name', sa.String(length=256), nullable=True))
-        batch_op.drop_column('vps_id')
-        batch_op.drop_column('ghl_connected')
-        batch_op.drop_column('bigquery_project_id')
-        batch_op.drop_column('google_ads_connected')
-        batch_op.drop_column('meta_ads_connected')
-        batch_op.drop_column('bigquery_dataset')
-        batch_op.drop_column('callrail_connected')
-        batch_op.drop_column('vps_ip')
+        
+        # Check and drop columns only if they exist
+        inspector = sa.inspect(op.get_bind())
+        existing_columns = [col['name'] for col in inspector.get_columns('user')]
+        
+        columns_to_drop = ['vps_id', 'ghl_connected', 'bigquery_project_id', 
+                          'google_ads_connected', 'meta_ads_connected', 
+                          'bigquery_dataset', 'callrail_connected', 'vps_ip']
+        
+        for column in columns_to_drop:
+            if column in existing_columns:
+                batch_op.drop_column(column)
 
     # ### end Alembic commands ###
 
